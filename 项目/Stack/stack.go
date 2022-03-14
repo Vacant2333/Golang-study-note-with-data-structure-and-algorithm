@@ -1,6 +1,9 @@
 package Stack
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 /*
 	Stack 栈 用链表实现 头结点不存数据 存长度
@@ -34,10 +37,18 @@ func Push(stack *Node, data ElementType) {
 	stack.Next = tmp
 }
 
+// Print 输出栈的数据
+func Print(stack *Node) {
+	stack = stack.Next
+	for stack != nil {
+		fmt.Printf("Data %T %v\n", stack.Data, stack.Data)
+		stack = stack.Next
+	}
+}
+
 // Pop 从一个栈中拿出数据
-func Pop(stack *Node) (ElementType, error) {
+func Pop(stack *Node, delete bool) (ElementType, error) {
 	if isNull(stack) == false {
-		stack.Data--
 		cur := stack
 		// 栈不为空,移动到倒数第二个Node
 		for cur.Next.Next != nil {
@@ -45,7 +56,11 @@ func Pop(stack *Node) (ElementType, error) {
 		}
 		// 拿到值然后断开Next
 		tmp := cur.Next.Data
-		cur.Next = nil
+		// delete是true的时候删除Node
+		if delete == true {
+			stack.Data--
+			cur.Next = nil
+		}
 		return tmp, nil
 	} else {
 		// 栈为空
