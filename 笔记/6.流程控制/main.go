@@ -95,6 +95,27 @@ func main() {
 	for index, val := range s1 {
 		fmt.Println(index, val)
 	}
+
+	// break 通过标签终止一层语句块 默认退出最近的循环
+label1:
+	for {
+		for {
+			break label1
+		}
+	}
+
+	// continue 通过标签跳出一次循环 默认跳出最近的循环
+label2:
+	for iii := 0; iii < 4; iii++ {
+		for iii < 4 {
+			// 在iii为2的时候直接continue了大循环 跳到label2的位置继续执行
+			if iii == 2 {
+				continue label2
+			}
+			fmt.Println("continue iii=", iii)
+			break
+		}
+	}
 }
 
 func test(a byte) byte {
