@@ -1,4 +1,4 @@
-package Stack
+package stack
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 )
 
 /*
-	Stack 栈 用链表实现 头结点不存数据 存长度
+	stack 栈 用链表实现 头结点不存数据 存长度
 */
 
 type ElementType = int32
