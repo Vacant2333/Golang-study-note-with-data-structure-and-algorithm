@@ -2,7 +2,6 @@ package stack
 
 import (
 	"errors"
-	"fmt"
 )
 
 /*
@@ -35,15 +34,6 @@ func Push(stack *Node, data ElementType) {
 		stack = stack.Next
 	}
 	stack.Next = tmp
-}
-
-// Print 输出栈的数据
-func Print(stack *Node) {
-	stack = stack.Next
-	for stack != nil {
-		fmt.Printf("Data %T %v\n", stack.Data, stack.Data)
-		stack = stack.Next
-	}
 }
 
 // Pop 从一个栈中拿出数据
