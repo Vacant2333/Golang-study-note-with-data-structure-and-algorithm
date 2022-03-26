@@ -8,10 +8,8 @@ import (
 	stack 栈 用链表实现 头结点不存数据 存长度
 */
 
-type ElementType = int32
-
 type Node struct {
-	Data ElementType
+	Data int
 	Next *Node
 }
 
@@ -24,7 +22,7 @@ func Create() *Node {
 }
 
 // Push 向一个栈中插入数据
-func Push(stack *Node, data ElementType) {
+func Push(stack *Node, data int) {
 	stack.Data++
 	tmp := new(Node)
 	tmp.Data = data
@@ -37,8 +35,8 @@ func Push(stack *Node, data ElementType) {
 }
 
 // Pop 从一个栈中拿出数据
-func Pop(stack *Node, delete bool) (ElementType, error) {
-	if isNull(stack) == false {
+func Pop(stack *Node, delete bool) (int, error) {
+	if isEmpty(stack) == false {
 		cur := stack
 		// 栈不为空,移动到倒数第二个Node
 		for cur.Next.Next != nil {
@@ -58,7 +56,7 @@ func Pop(stack *Node, delete bool) (ElementType, error) {
 	}
 }
 
-// isNull 检查栈是否为空
-func isNull(stack *Node) bool {
+// isEmpty 检查栈是否为空
+func isEmpty(stack *Node) bool {
 	return stack.Data == 0
 }
