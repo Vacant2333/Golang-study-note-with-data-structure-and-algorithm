@@ -37,9 +37,16 @@ func main() {
 		return n1 + n2
 	}(10, 20)
 	fmt.Println(result)
-	// 第二种 用变量来存放这个函数(a的数据类型是func类型)
+	// 第二种 用变量来存放这个函数(a的数据类型是func类型) 这种方式可以反复调用
 	a := func(n1 int, n2 int) int {
 		return n1 + n2
 	}
 	fmt.Printf("%T %v\n", a, a(1, 2))
+
+	fmt.Println(fun1(666))
+}
+
+// 匿名函数的第三种用法 全局匿名函数
+var fun1 = func(n1 int) int {
+	return n1 * 10
 }
