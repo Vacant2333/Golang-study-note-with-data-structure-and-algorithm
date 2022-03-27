@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go_notes/project/queue"
+	"go_notes/proj/queue"
 )
 
 func main() {

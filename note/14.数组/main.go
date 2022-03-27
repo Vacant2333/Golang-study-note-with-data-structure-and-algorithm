@@ -9,7 +9,7 @@ import "fmt"
 */
 
 func main() {
-	// 定义数组(不加...是切片)
+	// 声明/定义数组(不加...是切片)
 	var a [6]int
 	var b = [3]int{1, 2, 3}
 	var c = [...]int{4, 5, 6}

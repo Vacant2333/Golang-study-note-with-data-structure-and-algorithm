@@ -6,6 +6,11 @@ import (
 	"strings"
 )
 
+/*
+	string的底层是一个byte数组 因此也可以进行切片处理
+	string是不可变的 不能通过str[0] = 'z' 来改变
+*/
+
 func main() {
 	str := "abcde是"
 	// 计算字符串长度
