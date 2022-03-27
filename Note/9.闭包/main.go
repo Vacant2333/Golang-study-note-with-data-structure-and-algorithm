@@ -3,9 +3,8 @@ package main
 import "fmt"
 
 /*
-闭包就是 一个函数 和 与其相关的引用环境 组合的一个整体(实体)
-
-addUpper 是一个函数 返回的数据类型是 func(int) int
+	闭包就是 一个函数 和 与其相关的引用环境 组合的一个整体(实体)
+	addUpper 是一个函数 返回的数据类型是 func(int) int
 */
 func addUpper() func(int) int {
 	var n int = 10

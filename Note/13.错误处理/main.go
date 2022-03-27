@@ -5,9 +5,7 @@ import (
 	"fmt"
 )
 
-/*
-	在go中处理错误使用defer panic recover
-*/
+// 在go中处理错误使用defer panic recover
 
 // defer + recover 处理错误
 func test1() {

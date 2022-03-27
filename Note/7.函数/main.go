@@ -3,22 +3,22 @@ package main
 import "fmt"
 
 /*
-函数的正常使用:
-func 函数名 (形参, a int) (返回值类型1, float32) {
-	执行语句...
-	return (返回值列表)
-}
+	函数的正常使用:
+	func 函数名 (形参, a int) (返回值类型1, float32) {
+		执行语句...
+		return (返回值列表)
+	}
 */
 func test(a int, b int) (int, error) {
 	return a + b, nil
 }
 
 /*
-每一个源文件都可以包含一个init函数,该函数会在main函数执行之前被调用
-一般用来做初始化, 类似__construct 折构(构造)函数
+	每一个源文件都可以包含一个init函数,该函数会在main函数执行之前被调用
+	一般用来做初始化, 类似__construct 折构(构造)函数
 
-如果一个文件同时包含全局变量定义+init+main函数
-执行流程: 全局变量定义->init->main
+	如果一个文件同时包含全局变量定义+init+main函数
+	执行流程: 全局变量定义->init->main
 */
 
 var t int
