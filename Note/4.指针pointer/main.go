@@ -23,6 +23,12 @@ func main() {
 	// 通过函数传指针
 	changeValue(b)
 	fmt.Println(a)
+
+	// 指向数组的指针
+	arr := [...]int{10, 20, 30, 40}
+	p := &arr
+	p[3] = 0
+	fmt.Println(arr)
 }
 
 func changeValue(a *int) {

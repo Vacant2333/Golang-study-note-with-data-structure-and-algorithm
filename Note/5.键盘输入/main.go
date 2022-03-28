@@ -10,7 +10,7 @@ func main() {
 	fmt.Scanf("%d %f", &i, &f)
 	fmt.Println(i, f)
 
-	// 按空格分开读取
+	// 按空格分开读取两个数据 自动判断类型
 	fmt.Scan(&i, &f)
 	fmt.Println(i, f)
 }

@@ -33,10 +33,10 @@ func main() {
 	fmt.Println(stu)
 
 	// 复杂结构体 slice map必须make之后使用
-	var complex = struct {
+	var com = struct {
 		mapp map[string]int
 		sli  []int
 	}{make(map[string]int, 10), make([]int, 10)}
-	complex.mapp["test"] = 10
-	fmt.Println(complex)
+	com.mapp["test"] = 10
+	fmt.Println(com)
 }
