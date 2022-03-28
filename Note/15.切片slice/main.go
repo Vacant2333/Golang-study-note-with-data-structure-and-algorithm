@@ -6,6 +6,10 @@ import "fmt"
 	切片是数组的一个引用,因此切片是引用类型 蹲守引用传递的机制
 	切片的使用和数组类似,遍历/访问/求长度都是一样的
 	切片的长度是可以变化的,因此切片是一个可以动态变化的数组
+
+	字符串的底层是[]byte数组,所以字符串也支持切片相关操作
+	和数组不同,切片只支持判断是否为nil,不支持== !=判断
+	可以通过切片再次生成新的切片,两个切片底层指向统一数组
 */
 
 func main() {
@@ -64,6 +68,19 @@ func main() {
 	slice2 := slice1
 	test(slice2)
 	fmt.Println(slice1, slice2)
+
+	// 底层指向同一个数组 改动s1 也会改动原数组ar
+	ar := [...]int{10, 20, 30, 40, 50}
+	s1 := ar[0:2]
+	s2 := ar[0:3]
+	s1[1] = 10000
+	fmt.Println(ar, s1, s2)
+
+	// 字符串的切片操作
+	s := "php is the best language"
+	fmt.Println(s[2:10])
+	ss := []rune("php是世界上最好的语言")
+	fmt.Printf("%c", ss[3:4])
 }
 
 func test(slice []int) {

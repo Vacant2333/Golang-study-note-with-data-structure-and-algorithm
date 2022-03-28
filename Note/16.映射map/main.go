@@ -34,5 +34,9 @@ func main() {
 	delete(m, "a1")
 	fmt.Println(m)
 
-	//
+	// 通过ok-idiom模式判断键值对是否存储
+	if value, ok := m["a3"]; ok {
+		// 这里不会执行 因为没有a3这个key
+		fmt.Println("有这个key value是", value)
+	}
 }
