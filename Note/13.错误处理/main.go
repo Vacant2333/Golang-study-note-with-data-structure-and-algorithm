@@ -24,8 +24,9 @@ func test1() {
 
 func main() {
 	test1()
+	// 注意: panic异常也会沿着调用堆栈向外传递,所以也可以在外层捕获
 
-	// 自定义错误
+	// 自定义错误(中断程序)
 	// errors.New(string) 返回一个error类型的值,表示一个错误的说明
 	// panic内置函数 接受一个interface{} 输出错误信息并且退出程序(类似php的exit)
 	panic(errors.New("test error"))
