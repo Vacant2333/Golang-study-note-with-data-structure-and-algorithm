@@ -58,7 +58,7 @@ func main() {
 		fmt.Println("grade")
 	}
 
-	// switch判断类型 .(type) 必须用于switch
+	// switch判断类型 .(type) 必须用于switch 注意:不能用fallthrough
 	var x interface{}
 	var y float64 = 3.5
 	x = y
