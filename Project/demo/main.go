@@ -1,8 +1,8 @@
 package main
 
 import (
+	"Golang-study-note-with-data-structure-and-algorithm/DataStructure/queue"
 	"fmt"
-	"go_notes/DataStructure/queue"
 )
 
 func main() {
