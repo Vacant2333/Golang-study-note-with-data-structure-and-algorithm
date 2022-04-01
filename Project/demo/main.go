@@ -1,19 +1,21 @@
 package main
 
-import (
-	"Golang-study-note-with-data-structure-and-algorithm/DataStructure/queue"
-	"fmt"
-)
+import "fmt"
+
+// 返回一个“返回int的函数”
+func fibonacci() func() int {
+	s := []int{0, 1}
+	n := 0
+	return func() int {
+		s = append(s, s[len(s)-2]+s[len(s)-1])
+		n++
+		return s[n-1]
+	}
+}
 
 func main() {
-	q := queue.Create()
-	queue.Push(q, 1)
-	queue.Push(q, 2)
-	queue.Push(q, 3)
-	fmt.Println(queue.Pop(q, true))
-	fmt.Println(queue.Pop(q, true))
-	queue.Push(q, 4)
-	fmt.Println(queue.Pop(q, true))
-	fmt.Println(queue.Pop(q, true))
-	fmt.Println(q.Data)
+	f := fibonacci()
+	for i := 0; i < 10; i++ {
+		fmt.Println(f())
+	}
 }

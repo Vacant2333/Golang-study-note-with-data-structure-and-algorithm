@@ -11,6 +11,9 @@ import (
 */
 
 func main() {
-	var stu = model.Student{Name: "123"}
-	fmt.Println(stu)
+	var stu1 = model.Student1{Name: "123"}
+	fmt.Println(stu1)
+	// 工厂模式 使用student2(开头小写 私有)
+	stu2 := model.NewStudent2("男")
+	fmt.Println(stu2)
 }
