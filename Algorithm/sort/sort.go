@@ -1,0 +1,21 @@
+package sort
+
+// 可排序/查找的类型的接口
+type data interface {
+	// 获得长度
+	len() int
+	// 通过两个下标比较大小 s[a] > s[b] 则是true
+	compare(a int, b int) bool
+	// 交换两个下标对应的值
+	swap(a int, b int)
+}
+
+// IsSorted 判断是否已排序好
+func IsSorted(s data) bool {
+	for i := 0; i < s.len()-1; i++ {
+		if s.compare(i, i+1) == false {
+			return false
+		}
+	}
+	return true
+}
