@@ -4,8 +4,8 @@ import (
 	"errors"
 )
 
-// BinarySearch 二分查找(s必须是排序好的(升序)) 返回下标
-func BinarySearch(s []int, value int) (int, error) {
+// IntBinarySearch BinarySearch 二分查找(s必须是排序好的(升序)) 返回下标
+func IntBinarySearch(s []int, value int) (int, error) {
 	// 没有排序的话返回错误
 	if IsSorted(IntSlice(s)) == false {
 		return -1, errors.New("data is not sorted")

@@ -3,7 +3,7 @@ package sort
 /*
 	排序类型: 升序
 	搜索:
-		二分查找 待完成
+		二分查找 done
 	排序:
 		冒泡排序 待完成
 		快速排序 待完成
@@ -28,4 +28,19 @@ func IsSorted(s data) bool {
 		}
 	}
 	return true
+}
+
+// BubbleSort 冒泡排序
+func BubbleSort(s data) {
+	// flag: 在内部循环没有操作时退出外部循环
+	flag := true
+	for flag {
+		flag = false
+		for i := 0; i < s.len()-1; i++ {
+			if s.compare(i, i+1) {
+				s.swap(i, i+1)
+				flag = true
+			}
+		}
+	}
 }
