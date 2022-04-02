@@ -1,6 +1,16 @@
 package sort
 
+/*
+	排序类型: 升序
+	搜索:
+		二分查找 待完成
+	排序:
+		冒泡排序 待完成
+		快速排序 待完成
+*/
+
 // 可排序/查找的类型的接口
+// 已完成: []int,
 type data interface {
 	// 获得长度
 	len() int
@@ -13,7 +23,7 @@ type data interface {
 // IsSorted 判断是否已排序好
 func IsSorted(s data) bool {
 	for i := 0; i < s.len()-1; i++ {
-		if s.compare(i, i+1) == false {
+		if s.compare(i, i+1) == true {
 			return false
 		}
 	}
