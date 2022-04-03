@@ -23,7 +23,19 @@ func CreateNode(data ElementType, left, right *Node) *Node {
 	return tree
 }
 
-// PrintTree 打印整棵树
+// Count 计算子节点数量(0/1/2)
+func (node *Node) Count() int {
+	count := 0
+	if node.Left != nil {
+		count++
+	}
+	if node.Right != nil {
+		count++
+	}
+	return count
+}
+
+// PrintTree 打印整棵树(前序)
 func (node *Node) PrintTree() {
 	if node != nil {
 		node.PrintNode()

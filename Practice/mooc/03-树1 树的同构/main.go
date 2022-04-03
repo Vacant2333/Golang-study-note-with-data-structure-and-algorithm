@@ -86,15 +86,71 @@ func main() {
 		}
 	}
 	tree2 := generateTree(tree2Data, tree2AIndex)
-	fmt.Println(compare(tree1, tree2))
+	// 检查是否为空
+	if tree1 == nil || tree2 == nil {
+		if tree1 == nil && tree2 == nil {
+			fmt.Print("Yes")
+		} else {
+			fmt.Print("No")
+		}
+		return
+	}
+	if compare(tree1, tree2) {
+		fmt.Print("Yes")
+	} else {
+		fmt.Print("No")
+	}
 }
 
 func compare(t1 *tree.Node, t2 *tree.Node) bool {
-
+	if t1.Count() == t2.Count() {
+		// 子节点数量相同
+		if t1.Count() == 0 {
+			// 都没有节点
+			return t1.Data == t2.Data
+		}
+		if t1.Count() == 1 {
+			// 都只有一个节点 找出他们的两个要比较的节点
+			var tmp1, tmp2 *tree.Node
+			if t1.Left != nil {
+				tmp1 = t1.Left
+			} else {
+				tmp1 = t1.Right
+			}
+			if t2.Left != nil {
+				tmp2 = t2.Left
+			} else {
+				tmp2 = t2.Right
+			}
+			// 比较两个节点
+			return tmp1.Data == tmp2.Data && compare(tmp1, tmp2)
+		}
+		if t1.Count() == 2 {
+			// 都有两个节点
+			if t1.Left.Data == t2.Left.Data {
+				// 没有交换,直接比较同向节点
+				return t1.Left.Data == t2.Left.Data && compare(t1.Left, t2.Left) && t1.Right.Data == t2.Right.Data && compare(t1.Right, t2.Right)
+			} else if t1.Left.Data == t2.Right.Data {
+				// 有交换
+				return t1.Left.Data == t2.Right.Data && compare(t1.Left, t2.Right) && t1.Right.Data == t2.Left.Data && compare(t1.Right, t2.Left)
+			} else {
+				// 完全比不了
+				return false
+			}
+		}
+	} else {
+		// 节点数量不同
+		return false
+	}
+	return false
 }
 
 // 用slice的数据创建二叉树,index是返回的node(应传入A节点的下标)
 func generateTree(s []nodeData, index int) *tree.Node {
+	// 是否为空
+	if len(s) == 0 {
+		return nil
+	}
 	tmp := tree.CreateNode(s[index].data, nil, nil)
 	if s[index].leftIndex != -1 {
 		tmp.Left = generateTree(s, s[index].leftIndex)
