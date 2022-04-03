@@ -21,7 +21,7 @@ type data interface {
 	swap(a int, b int)
 }
 
-// IsSorted 判断是否已排序好
+// IsSorted 判断是否已排序(升序)好
 func IsSorted(s data) bool {
 	for i := 0; i < s.len()-1; i++ {
 		if s.compare(i, i+1) == true {
