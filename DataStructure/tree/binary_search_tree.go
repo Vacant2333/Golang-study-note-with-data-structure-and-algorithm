@@ -39,7 +39,25 @@ func (node *Node) FindBSTNode(data ElementType) *Node {
 	return nil
 }
 
-// FindMinBSTNode
+// FindMinBSTNode 搜索BST最小节点(也可以传入BST的某个节点,把这个节点当成一个BST,然后找它的最小的节点,最左边的节点就是最小的节点)
+func (node *Node) FindMinBSTNode() *Node {
+	cur := node
+	for cur != nil && cur.Left != nil {
+		// 一直向左移动 直到它没有左节点
+		cur = cur.Left
+	}
+	return cur
+}
+
+// FindMaxBSTNode 搜索BST最大节点,同上,最右边的节点就是最大的节点
+func (node *Node) FindMaxBSTNode() *Node {
+	cur := node
+	for cur != nil && cur.Right != nil {
+		// 一直向右移动 直到它没有右节点
+		cur = cur.Right
+	}
+	return cur
+}
 
 // InsertBSTNode BST插入节点(比当前节点小就走左边,否则右边,相等则无操作)
 func (node *Node) InsertBSTNode(data ElementType) {
@@ -48,7 +66,7 @@ func (node *Node) InsertBSTNode(data ElementType) {
 		if data < cur.Data {
 			// 要插入的节点小于当前节点
 			if cur.Left != nil {
-				// 左节点不为空 移动t
+				// 左节点不为空 移动cur
 				cur = cur.Left
 			} else {
 				// 左节点是空的 插入新节点后退出
@@ -58,7 +76,7 @@ func (node *Node) InsertBSTNode(data ElementType) {
 		} else {
 			// 要插入的节点大于当前节点
 			if cur.Right != nil {
-				// 右节点不为空 移动t
+				// 右节点不为空 移动cur
 				cur = cur.Right
 			} else {
 				// 左节点是空的 插入新节点后退出
@@ -68,4 +86,21 @@ func (node *Node) InsertBSTNode(data ElementType) {
 		}
 	}
 	// 到了这里就是t和data相等 不作任何操作 直接退出
+}
+
+// CheckBST 检查BST是否正确
+func (node *Node) CheckBST() bool {
+	// 如果节点是空的或者节点没有儿子直接返回True
+	if node == nil || node.CountSon() == 0 {
+		return true
+	} else {
+		// 如果不是空那就要检查儿子
+		if node.CountSon() == 1 {
+			// 这里是只有一个儿子的情况,检查单个儿子是否符合BST的规律
+			return (node.Left != nil && node.Left.Data < node.Data && node.Left.CheckBST()) || (node.Right != nil && node.Right.Data > node.Data && node.Right.CheckBST())
+		} else {
+			// 有两个节点
+			return node.Left.Data < node.Data && node.Right.Data > node.Data && node.Left.CheckBST() && node.Right.CheckBST()
+		}
+	}
 }

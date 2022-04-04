@@ -25,8 +25,8 @@ func CreateNode(data ElementType, left, right *Node) *Node {
 	return tree
 }
 
-// Count 计算子节点数量(0/1/2)
-func (node *Node) Count() int {
+// CountSon 计算子节点数量(0/1/2)
+func (node *Node) CountSon() int {
 	count := 0
 	if node.Left != nil {
 		count++

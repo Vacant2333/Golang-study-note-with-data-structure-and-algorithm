@@ -103,13 +103,13 @@ func main() {
 }
 
 func compare(t1 *tree.Node, t2 *tree.Node) bool {
-	if t1.Count() == t2.Count() {
+	if t1.CountSon() == t2.CountSon() {
 		// 子节点数量相同
-		if t1.Count() == 0 {
+		if t1.CountSon() == 0 {
 			// 都没有节点
 			return t1.Data == t2.Data
 		}
-		if t1.Count() == 1 {
+		if t1.CountSon() == 1 {
 			// 都只有一个节点 找出他们的两个要比较的节点
 			var tmp1, tmp2 *tree.Node
 			if t1.Left != nil {
@@ -125,7 +125,7 @@ func compare(t1 *tree.Node, t2 *tree.Node) bool {
 			// 比较两个节点
 			return tmp1.Data == tmp2.Data && compare(tmp1, tmp2)
 		}
-		if t1.Count() == 2 {
+		if t1.CountSon() == 2 {
 			// 都有两个节点
 			if t1.Left.Data == t2.Left.Data {
 				// 没有交换,直接比较同向节点
