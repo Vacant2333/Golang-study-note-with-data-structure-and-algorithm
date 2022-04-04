@@ -3,7 +3,9 @@ package tree
 import "fmt"
 
 /*
-	二叉树
+	二叉树,每一个节点可以认为是一个二叉树
+	实现:
+		二叉搜索树 待完成
 */
 
 type ElementType string
@@ -14,7 +16,7 @@ type Node struct {
 	Right *Node
 }
 
-// CreateNode 创建一个二叉树节点
+// CreateNode 创建一个二叉树节点/根
 func CreateNode(data ElementType, left, right *Node) *Node {
 	tree := new(Node)
 	tree.Data = data
