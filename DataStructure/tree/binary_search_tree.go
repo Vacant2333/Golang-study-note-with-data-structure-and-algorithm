@@ -12,13 +12,60 @@ func CreateBSTFromSlice(s []ElementType) *Node {
 	if len(s) == 0 {
 		return nil
 	}
+	// 根节点
 	t := CreateNode(s[0], nil, nil)
 	// 插入其余元素
-
+	for i := 1; i < len(s); i++ {
+		t.InsertBSTNode(s[i])
+	}
 	return t
 }
 
-// InsertBSTNode BST插入节点(比当前节点小就走左边,否则右边,相等则无操作)
-func InsertBSTNode(t *Node, data ElementType) {
+// FindBSTNode 搜索BST节点
+func (node *Node) FindBSTNode(data ElementType) *Node {
+	cur := node
+	for cur != nil {
+		if data < cur.Data {
+			// data比当前节点小,向左走
+			cur = cur.Left
+		} else if data > cur.Data {
+			// data比当前节点大,向右走
+			cur = cur.Right
+		} else {
+			// data和当前节点相等 直接返回
+			return cur
+		}
+	}
+	return nil
+}
 
+// FindMinBSTNode
+
+// InsertBSTNode BST插入节点(比当前节点小就走左边,否则右边,相等则无操作)
+func (node *Node) InsertBSTNode(data ElementType) {
+	cur := node
+	for cur.Data != data {
+		if data < cur.Data {
+			// 要插入的节点小于当前节点
+			if cur.Left != nil {
+				// 左节点不为空 移动t
+				cur = cur.Left
+			} else {
+				// 左节点是空的 插入新节点后退出
+				cur.Left = CreateNode(data, nil, nil)
+				return
+			}
+		} else {
+			// 要插入的节点大于当前节点
+			if cur.Right != nil {
+				// 右节点不为空 移动t
+				cur = cur.Right
+			} else {
+				// 左节点是空的 插入新节点后退出
+				cur.Right = CreateNode(data, nil, nil)
+				return
+			}
+		}
+	}
+	// 到了这里就是t和data相等 不作任何操作 直接退出
 }
