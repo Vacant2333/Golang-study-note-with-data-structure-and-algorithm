@@ -35,9 +35,9 @@ func TestNode_InsertBSTNode(t *testing.T) {
 	// TODO:check
 }
 
-func TestNode_CheckBST(t *testing.T) {
+func TestNode_IsValidBST(t *testing.T) {
 	bst := CreateBSTFromSlice(s)
-	fmt.Println(bst.CheckBST())
+	fmt.Println(bst.IsValidBST())
 	bst.Left.Data = "0"
-	fmt.Println(bst.CheckBST())
+	fmt.Println(bst.IsValidBST())
 }

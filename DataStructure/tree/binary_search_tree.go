@@ -2,6 +2,13 @@ package tree
 
 /*
 	二叉搜索树(BST)的实现,基于二叉树(binary_tree)
+	性质:
+		1.非空左子树上所有节点的值均小于它的根节点的值
+		2.非空右子树上所有节点的值均大于它的根节点的值
+		3.左右子树也分别为二叉搜索树
+	特性:
+		1.中序遍历下输出的二叉搜索树的节点的值是有序的(升序)
+		2.没有重复元素
 	这种数据结构本身很少使用,因为他的各种操作复杂度是O(层数),只有在它大致平衡(所有椰子的深度趋于相同)
 	才具有优秀的复杂度(当它是完全二叉树时,为O(log n)),然而这只是理想情况
 	假如我们依次加入6,5,4,3,2,1 BST的就会退化成链表,复杂度变为O(n)
@@ -88,19 +95,23 @@ func (node *Node) InsertBSTNode(data ElementType) {
 	// 到了这里就是t和data相等 不作任何操作 直接退出
 }
 
-// CheckBST 检查BST是否正确
-func (node *Node) CheckBST() bool {
-	// 如果节点是空的或者节点没有儿子直接返回True
-	if node == nil || node.CountSon() == 0 {
-		return true
-	} else {
-		// 如果不是空那就要检查儿子
-		if node.CountSon() == 1 {
-			// 这里是只有一个儿子的情况,检查单个儿子是否符合BST的规律
-			return (node.Left != nil && node.Left.Data < node.Data && node.Left.CheckBST()) || (node.Right != nil && node.Right.Data > node.Data && node.Right.CheckBST())
+// IsValidBST 检查BST是否正确(中序遍历法)
+func (node *Node) IsValidBST() bool {
+	// 前一个节点 每个节点都小于前一个节点就是正确的BST
+	var pre *Node
+	var travel func(n *Node) bool
+	travel = func(n *Node) bool {
+		if n == nil {
+			return true
 		} else {
-			// 有两个节点
-			return node.Left.Data < node.Data && node.Right.Data > node.Data && node.Left.CheckBST() && node.Right.CheckBST()
+			leftResult := travel(n.Left)
+			if pre != nil && pre.Data >= n.Data {
+				return false
+			}
+			pre = n
+			rightResult := travel(n.Right)
+			return leftResult && rightResult
 		}
 	}
+	return travel(node)
 }

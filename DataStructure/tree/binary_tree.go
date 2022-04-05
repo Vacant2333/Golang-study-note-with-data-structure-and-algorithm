@@ -37,11 +37,11 @@ func (node *Node) CountSon() int {
 	return count
 }
 
-// PrintTree 打印整棵树(前序)
+// PrintTree 打印整棵树(中序)
 func (node *Node) PrintTree() {
 	if node != nil {
-		node.PrintNode()
 		node.Left.PrintTree()
+		node.PrintNode()
 		node.Right.PrintTree()
 	}
 }
