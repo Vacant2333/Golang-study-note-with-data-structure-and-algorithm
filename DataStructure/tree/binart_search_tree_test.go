@@ -2,16 +2,31 @@ package tree
 
 import (
 	"fmt"
+	"math/rand"
+	"strconv"
 	"testing"
 )
 
 var s = []ElementType{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"}
 
 func TestCreateBSTFromSlice(t *testing.T) {
-	bst := CreateBSTFromSlice(s)
-	bst.PrintTree()
-
-	//var a []ElementType TODO:speed test
+	var data []ElementType
+	count := 1000 * 10000
+	// 存入随机数
+	for i := 0; i < count; i++ {
+		data = append(data, ElementType(strconv.Itoa(rand.Intn(10000000000))))
+	}
+	// 生成BST
+	bst := CreateBSTFromSlice(data)
+	// 查找测试
+	for i := 0; i < count; i++ {
+		if bst.FindBSTNode(data[i]) == nil {
+			fmt.Println("Find Error")
+		}
+	}
+	// BST验证
+	fmt.Println("Valid:", bst.IsValidBST())
+	fmt.Println("Depth:", bst.GetDepth())
 }
 
 func TestNode_FindBSTNode(t *testing.T) {
@@ -32,7 +47,32 @@ func TestNode_FindMaxBSTNode(t *testing.T) {
 }
 
 func TestNode_InsertBSTNode(t *testing.T) {
-	// TODO:check
+	bst := CreateBSTFromSlice(s)
+	bst.InsertBSTNode("test")
+	bst.InsertBSTNode("china")
+	bst.InsertBSTNode("牛")
+	bst.PrintTree()
+	fmt.Println(bst.IsValidBST())
+}
+
+func TestNode_DeleteBSTNode(t *testing.T) {
+	bst := CreateBSTFromSlice(s)
+	// 没有儿子节点
+	bst.DeleteBSTNode("Dec")
+	bst.PrintTree()
+	fmt.Printf("valid:%v\n", bst.IsValidBST())
+
+	bst = CreateBSTFromSlice(s)
+	// 一个儿子节点
+	bst.DeleteBSTNode("Aug")
+	bst.PrintTree()
+	fmt.Printf("valid:%v\n", bst.IsValidBST())
+
+	bst = CreateBSTFromSlice(s)
+	// 两个儿子节点
+	bst.DeleteBSTNode("Mar")
+	bst.PrintTree()
+	fmt.Printf("valid:%v\n", bst.IsValidBST())
 }
 
 func TestNode_IsValidBST(t *testing.T) {

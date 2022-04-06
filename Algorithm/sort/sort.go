@@ -8,6 +8,7 @@ package sort
 		冒泡排序 done
 		插入排序 done
 		快速排序 待完成
+	TODO: 快排
 */
 
 // 可排序/查找的类型的接口

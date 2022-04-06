@@ -95,6 +95,55 @@ func (node *Node) InsertBSTNode(data ElementType) {
 	// 到了这里就是t和data相等 不作任何操作 直接退出
 }
 
+// DeleteBSTNode 删除BST节点
+func (node *Node) DeleteBSTNode(data ElementType) {
+	var pre, cur *Node
+	cur = node
+	for cur != nil {
+		if data < cur.Data {
+			// 移动cur到要删除的节点
+			pre = cur
+			cur = cur.Left
+		} else if data > cur.Data {
+			// 移动cur到要删除的节点
+			pre = cur
+			cur = cur.Right
+		} else {
+			// cur是要删除的节点
+			if cur.CountSon() == 0 {
+				// 要删除的节点没有子节点 直接从父节点断开连接
+				if pre.Left == cur {
+					pre.Left = nil
+				} else {
+					pre.Right = nil
+				}
+			} else if cur.CountSon() == 1 {
+				// 要删除的节点有一个子节点 直接用子节点代替要删除的节点
+				var tmp *Node
+				if cur.Left != nil {
+					// 要删除的节点有一个右节点
+					tmp = cur.Right
+				} else {
+					// 要删除的节点有一个左节点
+					tmp = cur.Right
+				}
+				// 直接用要删除的节点的子节点替换要删除的节点的内容
+				cur.Data = tmp.Data
+				cur.Left = tmp.Left
+				cur.Right = tmp.Right
+			} else {
+				// 要删除的节点有两个子节点(该节点的右子树的最小值或左子树的最大值来代替他,然后删除最小/最大值)
+				rightMin := cur.Right.FindMinBSTNode()
+				// 直接用右子树的最小值替换当前要删除的值
+				cur.Data = rightMin.Data
+				// 删除右子树中的最小值(也就是重复值)
+				cur.Right.DeleteBSTNode(cur.Data)
+			}
+			return
+		}
+	}
+}
+
 // IsValidBST 检查BST是否正确(中序遍历法)
 func (node *Node) IsValidBST() bool {
 	// 前一个节点 每个节点都小于前一个节点就是正确的BST
