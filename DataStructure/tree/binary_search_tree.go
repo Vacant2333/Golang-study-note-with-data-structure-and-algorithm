@@ -29,8 +29,8 @@ func CreateBSTFromSlice(s []ElementType) *Node {
 }
 
 // FindBSTNode 搜索BST节点
-func (node *Node) FindBSTNode(data ElementType) *Node {
-	cur := node
+func (root *Node) FindBSTNode(data ElementType) *Node {
+	cur := root
 	for cur != nil {
 		if data < cur.Data {
 			// data比当前节点小,向左走
@@ -47,8 +47,8 @@ func (node *Node) FindBSTNode(data ElementType) *Node {
 }
 
 // FindMinBSTNode 搜索BST最小节点(也可以传入BST的某个节点,把这个节点当成一个BST,然后找它的最小的节点,最左边的节点就是最小的节点)
-func (node *Node) FindMinBSTNode() *Node {
-	cur := node
+func (root *Node) FindMinBSTNode() *Node {
+	cur := root
 	for cur != nil && cur.Left != nil {
 		// 一直向左移动 直到它没有左节点
 		cur = cur.Left
@@ -57,8 +57,8 @@ func (node *Node) FindMinBSTNode() *Node {
 }
 
 // FindMaxBSTNode 搜索BST最大节点,同上,最右边的节点就是最大的节点
-func (node *Node) FindMaxBSTNode() *Node {
-	cur := node
+func (root *Node) FindMaxBSTNode() *Node {
+	cur := root
 	for cur != nil && cur.Right != nil {
 		// 一直向右移动 直到它没有右节点
 		cur = cur.Right
@@ -67,8 +67,8 @@ func (node *Node) FindMaxBSTNode() *Node {
 }
 
 // InsertBSTNode BST插入节点(比当前节点小就走左边,否则右边,相等则无操作)
-func (node *Node) InsertBSTNode(data ElementType) {
-	cur := node
+func (root *Node) InsertBSTNode(data ElementType) {
+	cur := root
 	for cur.Data != data {
 		if data < cur.Data {
 			// 要插入的节点小于当前节点
@@ -96,9 +96,9 @@ func (node *Node) InsertBSTNode(data ElementType) {
 }
 
 // DeleteBSTNode 删除BST节点
-func (node *Node) DeleteBSTNode(data ElementType) {
+func (root *Node) DeleteBSTNode(data ElementType) {
 	var pre, cur *Node
-	cur = node
+	cur = root
 	for cur != nil {
 		if data < cur.Data {
 			// 移动cur到要删除的节点
@@ -145,7 +145,7 @@ func (node *Node) DeleteBSTNode(data ElementType) {
 }
 
 // IsValidBST 检查BST是否正确(中序遍历法)
-func (node *Node) IsValidBST() bool {
+func (root *Node) IsValidBST() bool {
 	// 前一个节点 每个节点都小于前一个节点就是正确的BST
 	var pre *Node
 	var travel func(n *Node) bool
@@ -162,5 +162,10 @@ func (node *Node) IsValidBST() bool {
 			return leftResult && rightResult
 		}
 	}
-	return travel(node)
+	return travel(root)
+}
+
+// IsEqual 判断两个树是否相等
+func (root *Node) IsEqual(root2 *Node) bool {
+
 }

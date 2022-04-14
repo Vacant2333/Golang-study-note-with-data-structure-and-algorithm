@@ -39,52 +39,52 @@ func CreateNode(data ElementType, left, right *Node) *Node {
 }
 
 // CountSon 计算子节点数量(0/1/2)
-func (node *Node) CountSon() int {
+func (root *Node) CountSon() int {
 	count := 0
-	if node.Left != nil {
+	if root.Left != nil {
 		count++
 	}
-	if node.Right != nil {
+	if root.Right != nil {
 		count++
 	}
 	return count
 }
 
 // PrintTree 打印整棵树(前序)
-func (node *Node) PrintTree() {
-	if node != nil {
-		node.PrintNode()
-		node.Left.PrintTree()
-		node.Right.PrintTree()
+func (root *Node) PrintTree() {
+	if root != nil {
+		root.PrintNode()
+		root.Left.PrintTree()
+		root.Right.PrintTree()
 	}
 }
 
 // PrintNode 打印树节点
-func (node *Node) PrintNode() {
-	if node != nil {
-		if node.Left != nil && node.Right != nil {
+func (root *Node) PrintNode() {
+	if root != nil {
+		if root.Left != nil && root.Right != nil {
 			// 左右都不为空
-			fmt.Printf("(2)Node:%v Left:%v: Right:%v\n", node.Data, node.Left.Data, node.Right.Data)
-		} else if node.Left != nil && node.Right == nil {
+			fmt.Printf("(2)Node:%v Left:%v: Right:%v\n", root.Data, root.Left.Data, root.Right.Data)
+		} else if root.Left != nil && root.Right == nil {
 			// 只有左节点
-			fmt.Printf("(1)Node:%v Left:%v\n", node.Data, node.Left.Data)
-		} else if node.Left == nil && node.Right != nil {
+			fmt.Printf("(1)Node:%v Left:%v\n", root.Data, root.Left.Data)
+		} else if root.Left == nil && root.Right != nil {
 			// 只有右节点
-			fmt.Printf("(1)Node:%v Right:%v\n", node.Data, node.Right.Data)
+			fmt.Printf("(1)Node:%v Right:%v\n", root.Data, root.Right.Data)
 		} else {
 			// 没有子节点
-			fmt.Printf("(0)Node:%v\n", node.Data)
+			fmt.Printf("(0)Node:%v\n", root.Data)
 		}
 	}
 }
 
 // GetDepth 获得树的深度
-func (node *Node) GetDepth() int {
-	if node == nil {
+func (root *Node) GetDepth() int {
+	if root == nil {
 		return 0
 	} else {
-		leftMaxDepth := node.Left.GetDepth()
-		rightMaxDepth := node.Right.GetDepth()
+		leftMaxDepth := root.Left.GetDepth()
+		rightMaxDepth := root.Right.GetDepth()
 		if leftMaxDepth >= rightMaxDepth {
 			return leftMaxDepth + 1
 		} else {
