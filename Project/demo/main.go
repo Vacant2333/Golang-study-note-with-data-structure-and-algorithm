@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"Golang-study-note-with-data-structure-and-algorithm/DataStructure/tree"
+	"fmt"
+)
 
-// 返回一个“返回int的函数”
+// fibonacci 斐波那契 返回一个“返回int的函数”
 func fibonacci() func() int {
 	s := []int{0, 1}
 	n := 0
@@ -18,4 +21,7 @@ func main() {
 	for i := 0; i < 10; i++ {
 		fmt.Println(f())
 	}
+
+	t := tree.CreateNode("1", nil, nil)
+	fmt.Println(t)
 }
