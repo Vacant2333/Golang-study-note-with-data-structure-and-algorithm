@@ -18,7 +18,12 @@ import "fmt"
 	实现:
 		二叉搜索树(Binary Search Tree) 已完成
 		平衡二叉搜索树(AVL)             TODO: AVL
-		红黑树(Red Black Tree)        TODO: RBT
+		红黑树(Red Black Tree)         TODO: RBT
+
+	完全二插树:
+		1.只允许最后一行有空节点
+		2.最后一行必须从左到右排序
+		3.最后一行元素中不可有间隔
 */
 
 type ElementType string
