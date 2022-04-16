@@ -164,9 +164,3 @@ func (root *Node) IsValidBST() bool {
 	}
 	return travel(root)
 }
-
-// IsEqual 判断两个树是否相等
-func (root *Node) IsEqual(root2 *Node) bool {
-	return true
-	// todo:isequal
-}

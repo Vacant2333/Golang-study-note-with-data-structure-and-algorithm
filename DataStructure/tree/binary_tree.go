@@ -97,3 +97,11 @@ func (root *Node) GetDepth() int {
 		}
 	}
 }
+
+// IsEqual 比较两个树是否完全一样
+func (root *Node) IsEqual(root2 *Node) bool {
+	if root == nil || root2 == nil {
+		return root == root2
+	}
+	return root.Data == root2.Data && root.Left.IsEqual(root2.Left) && root.Right.IsEqual(root2.Right)
+}
