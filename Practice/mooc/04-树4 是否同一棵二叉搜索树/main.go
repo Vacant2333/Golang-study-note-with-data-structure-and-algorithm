@@ -39,7 +39,7 @@ func main() {
 		// 要比较的搜索树数量
 		fmt.Scan(&checkCount)
 		// 读入树（总数是要比较的搜索树的数量+1）
-		// 所有的树
+		// 第一棵树 用来和后面的树比较
 		var firstTree *tree.Node
 		for a := 0; a <= checkCount; a++ {
 			// 读入的节点数据
@@ -51,7 +51,6 @@ func main() {
 				nodeTmp = append(nodeTmp, tmp)
 			}
 			if a == 0 {
-				// 第一个树是用来和后面比较的树
 				firstTree = tree.CreateBSTFromSlice(nodeTmp)
 			} else {
 				// 和第一个树比较
