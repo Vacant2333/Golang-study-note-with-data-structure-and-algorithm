@@ -21,22 +21,25 @@ func Create() *Node {
 	return head
 }
 
-// Push 向一个栈中插入数据
-func Push(stack *Node, data int) {
+// Push 向一个栈中插入Node
+func (stack *Node) Push(data int) {
+	// 计数++
 	stack.Data++
+	cur := stack
+	// 新Node
 	tmp := new(Node)
 	tmp.Data = data
 	tmp.Next = nil
 	// 移动到最后一个Node
-	for stack.Next != nil {
-		stack = stack.Next
+	for cur.Next != nil {
+		cur = cur.Next
 	}
-	stack.Next = tmp
+	cur.Next = tmp
 }
 
 // Pop 从一个栈中拿出数据
-func Pop(stack *Node, delete bool) (int, error) {
-	if isEmpty(stack) == false {
+func (stack *Node) Pop(delete bool) (int, error) {
+	if stack.isEmpty() == false {
 		cur := stack
 		// 栈不为空,移动到倒数第二个Node
 		for cur.Next.Next != nil {
@@ -57,6 +60,6 @@ func Pop(stack *Node, delete bool) (int, error) {
 }
 
 // isEmpty 检查栈是否为空
-func isEmpty(stack *Node) bool {
+func (stack *Node) isEmpty() bool {
 	return stack.Data == 0
 }

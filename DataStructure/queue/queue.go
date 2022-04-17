@@ -21,20 +21,25 @@ func Create() *Node {
 }
 
 // Push 向队列尾部插入一个节点
-func Push(queue *Node, data int) {
+func (queue *Node) Push(data int) {
+	// 计数+1
 	queue.Data++
+	cur := queue
+	// 声明新节点
 	tmp := new(Node)
 	tmp.Data = data
 	tmp.Next = nil
-	for queue.Next != nil {
-		queue = queue.Next
+	// 移动cur到最后一个节点
+	for cur.Next != nil {
+		cur = cur.Next
 	}
-	queue.Next = tmp
+	// 插入新节点
+	cur.Next = tmp
 }
 
 // Pop 从队列头部拿出一个节点(delete为true时删除)
-func Pop(queue *Node, delete bool) (int, error) {
-	if isEmpty(queue) == false {
+func (queue *Node) Pop(delete bool) (int, error) {
+	if queue.isEmpty() == false {
 		tmp := queue.Next
 		if delete == true {
 			queue.Next = queue.Next.Next
@@ -47,6 +52,6 @@ func Pop(queue *Node, delete bool) (int, error) {
 }
 
 // isEmpty 检查队列是否为空
-func isEmpty(queue *Node) bool {
+func (queue *Node) isEmpty() bool {
 	return queue.Data == 0
 }
