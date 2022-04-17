@@ -7,7 +7,7 @@ package sort
 	排序:
 		冒泡排序 done
 		插入排序 done
-		快速排序 待完成
+		快速排序
 	TODO: 快排
 */
 

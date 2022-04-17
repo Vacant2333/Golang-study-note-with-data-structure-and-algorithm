@@ -43,14 +43,20 @@ func Union(set1, set2 SetName) SetName {
 		// 更新节点总数
 		SetData[set1].Father += SetData[set2].Father
 		// set1的元素比set2多，把set2的元素的Father改为set1
-		for _, v := range getAll(set2) {
-			v.Father = int(set1)
+		SetData[set2].Father = int(set1)
+		for i, v := range SetData {
+			if v.Father == int(set2) {
+				SetData[i].Father = int(set1)
+			}
 		}
 		return set1
 	} else {
 		SetData[set2].Father += SetData[set1].Father
-		for _, v := range getAll(set1) {
-			v.Father = int(set2)
+		SetData[set1].Father = int(set2)
+		for i, v := range SetData {
+			if v.Father == int(set1) {
+				SetData[i].Father = int(set2)
+			}
 		}
 		return set2
 	}
@@ -60,27 +66,18 @@ func Union(set1, set2 SetName) SetName {
 func Find(data ElementType) SetName {
 	for i := 0; i < len(SetData); i++ {
 		if SetData[i].Data == data {
-			return SetName(i)
+			return SetName(SetData[i].Father)
 		}
 	}
 	return -1
 }
 
-// Get 通过集合名获得该集合所有的元素
-func getAll(name SetName) Set {
-	var s Set
-	for i := 0; i < len(SetData); i++ {
-		if SetData[i].Father == int(name) {
-			s = append(s, SetData[i])
-		}
-	}
-	return s
-}
-
 // Insert 插入一个节点,返回下标
 func insert(data ElementType, father int) int {
-	// 父节点计数+1
-	SetData[father].Father--
+	if father != -1 {
+		// 父节点计数+1
+		SetData[father].Father--
+	}
 	SetData = append(SetData, Node{data, father})
 	return len(SetData) - 1
 }
