@@ -40,8 +40,18 @@ func main() {
 // 与一个client通信
 func listenClient(client Client) {
 	buffer := make([]byte, 256)
-	count, _ := client.conn.Read(buffer)
-	if count > 0 {
-		fmt.Println(count, buffer)
+	for {
+		count, _ := client.conn.Read(buffer)
+		if count > 0 {
+			sendMsgToAll(client.name, buffer)
+		}
+	}
+}
+
+// 发送信息给所有用户
+func sendMsgToAll(name string, msg []byte) {
+	m := string(msg)
+	for _, client := range clients {
+		client.conn.Write([]byte(name + ":" + m))
 	}
 }
