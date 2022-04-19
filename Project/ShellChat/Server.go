@@ -29,7 +29,10 @@ func main() {
 			panic(errors.New("listener accept error"))
 		}
 		// 保存用户的连接
-		client := Client{"test", conn, conn.RemoteAddr().String()}
+		name := make([]byte, 256)
+		conn.Read(name)
+		client := Client{string(name), conn, conn.RemoteAddr().String()}
+		// 保存客户端
 		clients = append(clients, client)
 		fmt.Println("User login", client)
 		// 每一个用户的连接在单独的协程中处理
@@ -39,8 +42,8 @@ func main() {
 
 // 与一个client通信
 func listenClient(client Client) {
-	buffer := make([]byte, 256)
 	for {
+		buffer := make([]byte, 256)
 		count, _ := client.conn.Read(buffer)
 		if count > 0 {
 			sendMsgToAll(client.name, buffer)
@@ -50,8 +53,8 @@ func listenClient(client Client) {
 
 // 发送信息给所有用户
 func sendMsgToAll(name string, msg []byte) {
-	m := string(msg)
+	m := name + ":" + string(msg) + "\n"
 	for _, client := range clients {
-		client.conn.Write([]byte(name + ":" + m))
+		client.conn.Write([]byte(m))
 	}
 }
