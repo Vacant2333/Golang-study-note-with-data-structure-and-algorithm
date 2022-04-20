@@ -23,21 +23,36 @@ type Heap []int
 func main() {
 	// 待插入元素个数, 需要打印的路径条数
 	var elementCount, pathCount, tmp int
-	heap := make(Heap, 0)
+	heap := Create()
 	fmt.Scan(&elementCount, &pathCount)
 	// 读取元素
 	for elementCount > 0 {
 		fmt.Scan(&tmp)
 		heap.Insert(tmp)
 		elementCount--
-		fmt.Println(heap)
 	}
-	pathList := make([]int, 0)
 	// 读取要打印路径的节点
+	pathList := make([]int, 0)
 	for pathCount > 0 {
 		fmt.Scan(&tmp)
 		pathList = append(pathList, tmp)
 		pathCount--
+	}
+	for _, index := range pathList {
+		heap.PrintPath(index)
+		fmt.Println()
+	}
+}
+
+// PrintPath 打印节点到跟节点的路径
+func (heap *Heap) PrintPath(index int) {
+	if index > 0 {
+		father := index / 2
+		fmt.Print((*heap)[index])
+		if father > 0 {
+			fmt.Print(" ")
+		}
+		heap.PrintPath(father)
 	}
 }
 
@@ -49,19 +64,26 @@ func (heap *Heap) Insert(data int) {
 
 // shiftUp 上滤,将一个(最后一个)节点向上移动到正确的位置(最小堆)
 func (heap *Heap) shiftUp(index int) {
-	fmt.Println(index)
-	for index > 0 {
+	for index > 1 {
 		// 父节点
 		fatherIndex := index / 2
 		if (*heap)[fatherIndex] > (*heap)[index] {
 			// 父节点比当前节点大,把当前节点和父节点交换
 			heap.swap(fatherIndex, index)
-			index /= 2
+			index = fatherIndex
 		} else {
 			// 父节点比当前节点小 退出
 			break
 		}
 	}
+}
+
+// Create 创建一个Heap堆
+func Create() Heap {
+	// 堆的第一个元素不使用
+	heap := make(Heap, 0)
+	heap = append(heap, 0)
+	return heap
 }
 
 // swap 交换两个元素
