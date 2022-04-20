@@ -56,6 +56,7 @@ func main() {
 	// 元素个数
 	var n int
 	fmt.Scan(&n)
+	SetData = make(Set, 0, 10000)
 	for i := 1; i <= n; i++ {
 		SetData = append(SetData, Node{ElementType(i), -1})
 	}
@@ -67,30 +68,28 @@ func main() {
 			fmt.Scan(&c1, &c2)
 			if command == "C" {
 				// 检查两台电脑的连接
-				if Find(ElementType(c1)) == Find(ElementType(c2)) {
+				if GetFather(c1-1) == GetFather(c2-1) {
 					fmt.Println("yes")
 				} else {
 					fmt.Println("no")
 				}
 			} else if command == "I" {
 				// 连接两台电脑
-				Union(Find(ElementType(c1)), Find(ElementType(c2)))
+				Union(GetFather(c1-1), GetFather(c2-1))
 			}
 		} else {
 			// S指令 退出
 			break
 		}
 	}
-	// 检查有几个节点的父节点是-1 如果是0个则全都连起来了
+	// 检查有几个节点的父节点是-1 如果是1个则全都连起来了
 	fatherNodeCount := 0
 	for _, v := range SetData {
 		if v.Father < 0 {
 			fatherNodeCount++
-		} else {
-			//fmt.Println(v)
 		}
 	}
-	if fatherNodeCount <= 1 {
+	if fatherNodeCount == 1 {
 		fmt.Println("The network is connected.")
 	} else {
 		fmt.Println("There are " + strconv.Itoa(fatherNodeCount) + " components.")
@@ -113,9 +112,19 @@ type Node struct {
 // SetData 存储所有的集合的节点
 var SetData Set
 
+// GetFather 获得节点的父节点(传入下标)
+func GetFather(index int) SetName {
+	if SetData[index].Father >= 0 {
+		return SetData[index].Father
+	} else {
+		return SetName(index)
+	}
+}
+
 // Union 合并两个集合(将较小的集合的所有元素的Father改为较大的集合的Father),返回新集合的名称
 func Union(set1, set2 SetName) SetName {
 	if SetData[set1].Father*-1 >= SetData[set2].Father*-1 {
+		count := SetData[set2].Father*-1 - 1
 		// 更新节点总数
 		SetData[set1].Father += SetData[set2].Father
 		// set1的元素比set2多，把set2的元素的Father改为set1
@@ -123,33 +132,26 @@ func Union(set1, set2 SetName) SetName {
 		for i, v := range SetData {
 			if v.Father == set2 {
 				SetData[i].Father = set1
+				count--
+			}
+			if count == 0 {
+				break
 			}
 		}
 		return set1
 	} else {
+		count := SetData[set1].Father*-1 - 1
 		SetData[set2].Father += SetData[set1].Father
 		SetData[set1].Father = set2
 		for i, v := range SetData {
 			if v.Father == set1 {
 				SetData[i].Father = set2
+				count--
+			}
+			if count == 0 {
+				break
 			}
 		}
 		return set2
 	}
-}
-
-// Find 在集合中查找一个节点，如果没有返回-1，有的话返回父节点的下标
-func Find(data ElementType) SetName {
-	for i := 0; i < len(SetData); i++ {
-		if SetData[i].Data == data {
-			if SetData[i].Father >= 0 {
-				// 它是一个子节点 返回父节点
-				return SetData[i].Father
-			} else {
-				// 它是一个父节点 直接返回
-				return SetName(i)
-			}
-		}
-	}
-	return -1
 }
