@@ -3,6 +3,7 @@ package heap
 /*
 	Heap堆(最大堆):
 		堆序性:大根堆的左右节点都比根小,也就是头节点是最大值(还有小根堆)
+		第一个元素留空 不使用
 		节点下标为i时，左子节点下标为2i+1,右子节点下标为2i+2,父节点是i/2 (3/2 = 2/2 = 1,整除)
 		所有的叶子应处于第h/h-1层(h是树的高度),也就是说应是一棵完全二插树
 			入队			出队
@@ -15,7 +16,10 @@ type Heap []ElementType
 
 // Create 创建一个Heap堆
 func Create() Heap {
-	return make(Heap, 0)
+	// 堆的第一个元素不使用
+	heap := make(Heap, 0)
+	heap = append(heap, 0)
+	return heap
 }
 
 // Insert 插入一个节点在Heap的尾部,然后Shift Up(上滤)最后一个节点,保证堆序性
@@ -26,25 +30,25 @@ func (heap *Heap) Insert(data ElementType) {
 
 // GetMax 弹出最大值,也就是返回0节点,用最后一个节点代替它然后下滤
 func (heap *Heap) GetMax() ElementType {
-	max := (*heap)[0]
+	max := (*heap)[1]
 	// 交换最大和最小
-	heap.swap(0, len(*heap)-1)
+	heap.swap(1, len(*heap)-1)
 	// 删除最后一个元素(也就是最大值,被swap到最后了)
 	*heap = (*heap)[:len(*heap)-1]
 	// 下滤第一个节点,保证堆序性
-	heap.shiftDown(0)
+	heap.shiftDown(1)
 	return max
 }
 
 // shiftUp 上滤,将一个(最后一个)节点向上移动到正确的位置(最大堆)
 func (heap *Heap) shiftUp(index int) {
-	for index > 0 {
+	for index > 1 {
 		// 父节点
 		fatherIndex := index / 2
 		if (*heap)[fatherIndex] < (*heap)[index] {
 			// 父节点比当前节点小,把当前节点和父节点交换
 			heap.swap(fatherIndex, index)
-			index /= 2
+			index = fatherIndex
 		} else {
 			// 父节点比当前节点大 退出
 			break
@@ -58,8 +62,8 @@ func (heap *Heap) shiftDown(index int) {
 		// 最大下标
 		maxIndex := len(*heap) - 1
 		// 左右儿子节点的下标
-		leftChild := index*2 + 1
-		rightChild := index*2 + 2
+		leftChild := index * 2
+		rightChild := index*2 + 1
 		if leftChild <= maxIndex && rightChild <= maxIndex {
 			// 有两个儿子节点,判断是否都大于当前节点
 			if (*heap)[leftChild] > (*heap)[index] && (*heap)[rightChild] > (*heap)[index] {

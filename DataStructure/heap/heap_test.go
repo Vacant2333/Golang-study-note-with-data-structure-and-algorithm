@@ -13,6 +13,7 @@ func TestCreate(t *testing.T) {
 }
 
 func TestHeap_Insert(t *testing.T) {
+	heap = Create()
 	heap.Insert(1)
 	heap.Insert(3)
 	heap.Insert(5)
@@ -23,6 +24,7 @@ func TestHeap_Insert(t *testing.T) {
 }
 
 func TestHeap_GetMax(t *testing.T) {
+	heap = Create()
 	heap.Insert(1)
 	heap.Insert(3)
 	heap.Insert(5)
