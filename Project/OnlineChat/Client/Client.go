@@ -50,7 +50,7 @@ func handleSend(conn net.Conn, name string) {
 // 协程处理服务端信息
 func handleReceive(conn net.Conn) {
 	for {
-		buffer := make([]byte, 256)
+		buffer := make([]byte, 128)
 		n, _ := conn.Read(buffer)
 		if n > 0 {
 			fmt.Printf("%s", buffer)
