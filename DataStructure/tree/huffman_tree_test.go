@@ -1,7 +1,10 @@
 package tree
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestBuildHuffmanTree(t *testing.T) {
-	BuildHuffmanTree([]ElementType{"1", "2"})
+	tree := BuildHuffmanTree([]ElementType{"1", "2", "3", "4", "5"})
+	tree.PrintTree()
 }

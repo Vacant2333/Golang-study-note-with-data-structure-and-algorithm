@@ -2,7 +2,6 @@ package tree
 
 import (
 	"errors"
-	"fmt"
 )
 
 /*
@@ -17,20 +16,32 @@ import (
 */
 
 // BuildHuffmanTree 从一个slice生成哈夫曼树(数据应按频率的升序存放,频率低的数据放在前面)
-func BuildHuffmanTree(s []ElementType) Node {
+func BuildHuffmanTree(s []ElementType) *Node {
 	if len(s) <= 1 {
 		panic(errors.New("slice need more element"))
 	}
-	n := buildConnectNode(nil, nil)
-
-	fmt.Println(n.Data == "")
-	return n
+	// 建哈夫曼树(s是按使用频率升序排好的数据)
+	var head *Node
+	for _, v := range s {
+		if head == nil {
+			// 初次进入循环
+			head = createDataNode(v)
+		} else {
+			head = createConnectNode(head, createDataNode(v))
+		}
+	}
+	return head
 }
 
-// buildConnectNode 创建一个连接节点(data为空)
-func buildConnectNode(left, right *Node) Node {
-	n := Node{}
+// createConnectNode 创建一个连接/非叶节点(data为空,度一定为2)
+func createConnectNode(left, right *Node) *Node {
+	n := new(Node)
 	n.Left = left
 	n.Right = right
 	return n
+}
+
+// createDataNode 创建一个数据节点(度一定为0)
+func createDataNode(data ElementType) *Node {
+	return CreateNode(data, nil, nil)
 }
