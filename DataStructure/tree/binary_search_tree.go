@@ -14,8 +14,8 @@ package tree
 	假如我们依次加入6,5,4,3,2,1 BST的就会退化成链表,复杂度变为O(n)
 */
 
-// CreateBSTFromSlice 从切片生成一个搜索二叉树BST
-func CreateBSTFromSlice(s []ElementType) *Node {
+// BuildBSTFromSlice 从切片生成一个搜索二叉树BST
+func BuildBSTFromSlice(s []ElementType) *Node {
 	if len(s) == 0 {
 		return nil
 	}

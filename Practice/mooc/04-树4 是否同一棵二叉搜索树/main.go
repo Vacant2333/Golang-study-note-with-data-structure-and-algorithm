@@ -51,10 +51,10 @@ func main() {
 				nodeTmp = append(nodeTmp, tmp)
 			}
 			if a == 0 {
-				firstTree = tree.CreateBSTFromSlice(nodeTmp)
+				firstTree = tree.BuildBSTFromSlice(nodeTmp)
 			} else {
 				// 和第一个树比较
-				treeTmp = tree.CreateBSTFromSlice(nodeTmp)
+				treeTmp = tree.BuildBSTFromSlice(nodeTmp)
 				if IsEqual(firstTree, treeTmp) == false {
 					// 和第一个树不一样
 					fmt.Println("No")
