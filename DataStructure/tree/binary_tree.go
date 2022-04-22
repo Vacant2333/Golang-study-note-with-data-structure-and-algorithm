@@ -69,7 +69,7 @@ func (root *Node) PrintNode() {
 	if root != nil {
 		if root.Left != nil && root.Right != nil {
 			// 左右都不为空
-			fmt.Printf("(2)Node:%v Left:%v: Right:%v\n", root.Data, root.Left.Data, root.Right.Data)
+			fmt.Printf("(2)Node:%v Left:%v Right:%v\n", root.Data, root.Left.Data, root.Right.Data)
 		} else if root.Left != nil && root.Right == nil {
 			// 只有左节点
 			fmt.Printf("(1)Node:%v Left:%v\n", root.Data, root.Left.Data)
