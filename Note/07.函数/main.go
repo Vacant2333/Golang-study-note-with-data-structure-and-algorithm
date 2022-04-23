@@ -44,6 +44,15 @@ func main() {
 	fmt.Printf("%T %v\n", a, a(1, 2))
 
 	fmt.Println(fun1(666))
+	// 匿名函数调用自己 要提前声明
+	var test func(a, n int) int
+	test = func(a, n int) int {
+		if n <= 0 {
+			return 0
+		}
+		return a + test(a, n-1)
+	}
+	fmt.Println("test func自己调用自己：", test(5, 4))
 }
 
 // 匿名函数的第三种用法 全局匿名函数
