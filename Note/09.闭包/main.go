@@ -7,7 +7,7 @@ import "fmt"
 	addUpper 是一个函数 返回的数据类型是 func(int) int
 */
 func addUpper() func(int) int {
-	var n int = 10
+	var n = 10
 	return func(x int) int {
 		n = n + x
 		return n
