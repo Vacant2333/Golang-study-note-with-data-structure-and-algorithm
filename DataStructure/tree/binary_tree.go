@@ -36,11 +36,7 @@ type Node struct {
 
 // CreateNode 创建一个二叉树节点/根
 func CreateNode(data ElementType, left, right *Node) *Node {
-	tree := new(Node)
-	tree.Data = data
-	tree.Left = left
-	tree.Right = right
-	return tree
+	return &Node{data, left, right}
 }
 
 // CountSon 计算子节点数量(0/1/2)
