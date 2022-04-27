@@ -44,9 +44,9 @@ func main() {
 	var nodeCount, edgeCount int
 	fmt.Scan(&nodeCount, &edgeCount)
 	// 初始化图
-	graph := make([][]bool, nodeCount)
+	graph := make([]map[int]bool, nodeCount)
 	for i, _ := range graph {
-		graph[i] = make([]bool, nodeCount)
+		graph[i] = make(map[int]bool)
 	}
 	// 读入边
 	var t1, t2 int
@@ -59,9 +59,9 @@ func main() {
 	for node := 0; node < nodeCount; node++ {
 		// 计算这个边的六度比例(BFS)
 		// 存放访问到的所有节点名(题目的名称-1 从0开始)
-		queue := make([]int, 0, 1000)
+		queue := make([]int, 0, nodeCount)
 		// 能够访问的节点
-		visited := make(map[int]bool, 1000)
+		visited := make(map[int]bool, nodeCount)
 		visited[node] = true
 		queue = append(queue, node)
 		// 这一层在queue中的开始节点的下标
