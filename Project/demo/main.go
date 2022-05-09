@@ -21,7 +21,6 @@ func main() {
 	for i := 0; i < 10; i++ {
 		fmt.Println(f())
 	}
-
 	t := tree.CreateNode("1", nil, nil)
 	fmt.Println(t)
 }
