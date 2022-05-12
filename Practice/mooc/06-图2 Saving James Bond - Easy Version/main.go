@@ -68,7 +68,9 @@ func main() {
 	// 访问过的节点
 	reachedNode := make([][2]int, 0)
 	// 中心岛,直径是15
+	reachedNode = append(reachedNode, [2]int{50, 50})
 	routeStack = append(routeStack, [2]int{50, 50})
+	// 开始探路
 	for len(routeStack) != 0 {
 		// 取最新的节点作为当前节点
 		nowPos := routeStack[len(routeStack)-1]
@@ -90,9 +92,9 @@ func main() {
 		if len(canGo) == 0 {
 			// 没地方可以去 后退
 			routeStack = routeStack[0 : len(routeStack)-1]
-			reachedNode = append(reachedNode, nowPos)
 		} else {
 			// 有地方可以向前 继续
+			reachedNode = append(reachedNode, canGo[0])
 			routeStack = append(routeStack, canGo[0])
 		}
 	}
