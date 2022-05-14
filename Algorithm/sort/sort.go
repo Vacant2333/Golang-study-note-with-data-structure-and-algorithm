@@ -78,6 +78,7 @@ func ShellSort(s []int) {
 		这里使用Sedgewick增量序列,效率更高
 		他的时间效率是O(n^6/5),但是目前无法证明
 		这里只写了Sedgewick的一部分增量
+		https://baike.baidu.com/item/%E5%B8%8C%E5%B0%94%E5%A2%9E%E9%87%8F/6853339?fr=aladdin
 	*/
 	sedgewick := []int{929, 505, 209, 109, 41, 19, 5, 1, 0}
 	sedgewickIndex := 0
@@ -85,18 +86,15 @@ func ShellSort(s []int) {
 	for sedgewick[sedgewickIndex] > len(s) {
 		sedgewickIndex++
 	}
+	// 可以把插入排序的增量理解为1,这里换成sedgewick的元素,一直想下取直到0
 	for d := sedgewick[sedgewickIndex]; d > 0; d = sedgewick[sedgewickIndex] {
 		// 插入排序
 		for i := d; i < len(s); i++ {
-			// 保存当前元素的值
 			tmp := s[i]
 			k := i
-			// 向左找到一个合适的位置插入当前元素s[i]
 			for ; k >= d && s[k-d] > tmp; k -= d {
-				// 把已排序好的元素中比s[i]大的部分右移
 				s[k] = s[k-d]
 			}
-			// 插入s[i],下一个是s[i+1]
 			s[k] = tmp
 		}
 		// 增量取下一个
