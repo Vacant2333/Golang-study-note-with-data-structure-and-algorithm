@@ -92,9 +92,9 @@ func ShellSort(s []int) {
 			tmp := s[i]
 			k := i
 			// 向左找到一个合适的位置插入当前元素s[i]
-			for ; k >= d && s[k-1] > tmp; k-- {
+			for ; k >= d && s[k-d] > tmp; k -= d {
 				// 把已排序好的元素中比s[i]大的部分右移
-				s[k] = s[k-1]
+				s[k] = s[k-d]
 			}
 			// 插入s[i],下一个是s[i+1]
 			s[k] = tmp
