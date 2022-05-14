@@ -23,4 +23,6 @@ func main() {
 	}
 	t := tree.CreateNode("1", nil, nil)
 	fmt.Println(t)
+	s := make([]int, 5)
+	fmt.Println(s[0], &s[0])
 }
