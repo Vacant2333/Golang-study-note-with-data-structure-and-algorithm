@@ -1,7 +1,7 @@
 package sort
 
 /*
-	在这个文件中实现sort.go中slice的接口(int, float64, string)
+	在这个文件中实现sort.go中slice的接口([]int)
 */
 
 type IntSlice []int
