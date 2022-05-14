@@ -32,7 +32,9 @@ func IsSorted(s ElementType) bool {
 	return true
 }
 
-// BubbleSort 冒泡排序(依次扫描相邻的两个元素,小的放左边,最好O(n),最坏O(n^2))  http://c.biancheng.net/view/6506.html
+// BubbleSort 冒泡排序(依次扫描相邻的两个元素,小的放左边)
+// 时间效率:最好O(n),最坏O(n^2)
+// http://c.biancheng.net/view/6506.html
 func BubbleSort(s ElementType) {
 	for right := 1; right < s.len(); right++ {
 		// 如果一趟排序中flag没有变为true就表示数据已排序好,直接break
@@ -50,8 +52,10 @@ func BubbleSort(s ElementType) {
 	}
 }
 
-// InsertSort  插入排序(遍历下标从1开始的元素,插入到前面已经排序好的数据中)  https://www.runoob.com/data-structures/insertion-sort.html
-func InsertSort(s ElementType) {
+// InsertionSort  插入排序(遍历下标从1开始的元素,插入到前面已经排序好的数据中)
+// 时间效率:最好O(n),最坏O(n^2)
+// https://www.runoob.com/data-structures/insertion-sort.html
+func InsertionSort(s ElementType) {
 	for i := 1; i < s.len(); i++ {
 		for k := i; k > 0; k-- {
 			if s.compare(k, k-1) == false {

@@ -29,7 +29,7 @@ func TestBubbleSort(t *testing.T) {
 	fmt.Println(a3)
 }
 
-func TestInsertSort(t *testing.T) {
-	InsertSort(IntSlice(a4))
+func TestInsertionSort(t *testing.T) {
+	InsertionSort(IntSlice(a4))
 	fmt.Println(a4)
 }
