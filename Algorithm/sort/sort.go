@@ -17,25 +17,15 @@ package sort
 	排序:
 		冒泡排序 done
 		插入排序 done
+		希尔排序 done
 		快速排序
 	TODO: 快排
 */
 
-// ElementType 可排序/查找的类型的接口
-// 已完成: []int
-type ElementType interface {
-	// 获得长度
-	len() int
-	// 通过两个下标比较大小 s[a] > s[b] 则是true
-	compare(a int, b int) bool
-	// 交换两个下标对应的值
-	swap(a int, b int)
-}
-
 // IsSorted 判断是否已排序(升序)好
-func IsSorted(s ElementType) bool {
-	for i := 0; i < s.len()-1; i++ {
-		if s.compare(i, i+1) == true {
+func IsSorted(s []int) bool {
+	for i := 0; i < len(s)-1; i++ {
+		if s[i] > s[i+1] == true {
 			return false
 		}
 	}
@@ -45,14 +35,14 @@ func IsSorted(s ElementType) bool {
 // BubbleSort 冒泡排序(依次扫描相邻的两个元素,小的放左边)
 // 时间效率:最好O(n),最坏O(n^2)
 // http://c.biancheng.net/view/6506.html
-func BubbleSort(s ElementType) {
-	for right := 1; right < s.len(); right++ {
+func BubbleSort(s []int) {
+	for right := 1; right < len(s); right++ {
 		// 如果一趟排序中flag没有变为true就表示数据已排序好,直接break
 		flag := false
 		// 右边界每次都会-1,因为每一趟排序之后,最大的元素就会被放到最后
-		for left := 0; left < s.len()-right; left++ {
-			if s.compare(left, left+1) {
-				s.swap(left, left+1)
+		for left := 0; left < len(s)-right; left++ {
+			if s[left] > s[left+1] {
+				s[left], s[left+1] = s[left+1], s[left]
 				flag = true
 			}
 		}
@@ -62,15 +52,54 @@ func BubbleSort(s ElementType) {
 	}
 }
 
-// InsertionSort  插入排序(遍历下标从1开始的元素,插入到前面已经排序好的数据中)
+// InsertionSort 插入排序(遍历下标从1开始的元素,插入到前面已经排序好的数据中)
 // 时间效率:最好O(n),最坏O(n^2)
 // https://www.runoob.com/data-structures/insertion-sort.html
-func InsertionSort(s ElementType) {
-	for i := 1; i < s.len(); i++ {
-		for k := i; k > 0; k-- {
-			if s.compare(k, k-1) == false {
-				s.swap(k, k-1)
-			}
+func InsertionSort(s []int) {
+	for i := 1; i < len(s); i++ {
+		// 保存当前元素的值
+		tmp := s[i]
+		k := i
+		// 向左找到一个合适的位置插入当前元素s[i]
+		for ; k > 0 && s[k-1] > tmp; k-- {
+			// 把已排序好的元素中比s[i]大的部分右移
+			s[k] = s[k-1]
 		}
+		// 插入s[i],下一个是s[i+1]
+		s[k] = tmp
+	}
+}
+
+// ShellSort 希尔排序
+func ShellSort(s []int) {
+	/*
+		基本的希尔排序的增量序列是n,n/2,n/4...
+		但是它的时间效率也是O(n^2)
+		这里使用Sedgewick增量序列,效率更高
+		他的时间效率是O(n^6/5),但是目前无法证明
+		这里只写了Sedgewick的一部分增量
+	*/
+	sedgewick := []int{929, 505, 209, 109, 41, 19, 5, 1, 0}
+	sedgewickIndex := 0
+	// 增量不能大于数组长度
+	for sedgewick[sedgewickIndex] > len(s) {
+		sedgewickIndex++
+	}
+	for d := sedgewick[sedgewickIndex]; d > 0; d = sedgewick[sedgewickIndex] {
+		// 插入排序
+		for i := d; i < len(s); i++ {
+			// 保存当前元素的值
+			tmp := s[i]
+			k := i
+			// 向左找到一个合适的位置插入当前元素s[i]
+			for ; k >= d && s[k-1] > tmp; k-- {
+				// 把已排序好的元素中比s[i]大的部分右移
+				s[k] = s[k-1]
+			}
+			// 插入s[i],下一个是s[i+1]
+			s[k] = tmp
+		}
+		// 增量取下一个
+		sedgewickIndex++
 	}
 }

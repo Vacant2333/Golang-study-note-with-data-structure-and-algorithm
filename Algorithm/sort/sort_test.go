@@ -10,10 +10,11 @@ var a1 = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 9}
 var a2 = []int{1, 2, 3, 4, 5, 6, 2, 7, 8, 9}
 var a3 = []int{6, 8, 9, 7, 5, 4, 1, 2, 3, 9}
 var a4 = []int{6, 8, 9, 7, 5, 4, 1, 2, 3, 9}
+var a5 = []int{6, 8, 9, 7, 5, 4, 1, 2, 3, 9}
 
 func TestIsSorted(t *testing.T) {
-	fmt.Println(IsSorted(IntSlice(a1)))
-	fmt.Println(IsSorted(IntSlice(a2)))
+	fmt.Println(IsSorted(a1))
+	fmt.Println(IsSorted(a2))
 }
 
 func TestIntBinarySearch(t *testing.T) {
@@ -25,11 +26,16 @@ func TestIntBinarySearch(t *testing.T) {
 }
 
 func TestBubbleSort(t *testing.T) {
-	BubbleSort(IntSlice(a3))
+	BubbleSort(a3)
 	fmt.Println(a3)
 }
 
 func TestInsertionSort(t *testing.T) {
-	InsertionSort(IntSlice(a4))
+	InsertionSort(a4)
 	fmt.Println(a4)
+}
+
+func TestShellSort(t *testing.T) {
+	ShellSort(a5)
+	fmt.Println(a5)
 }
