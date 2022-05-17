@@ -24,58 +24,83 @@ func main() {
 		s := make([]int, 5)
 		fmt.Println(s[0], &s[0])
 	*/
-	s := make([][]int, 2)
-	s[0] = []int{15, 1}
-	s[1] = []int{10, 11}
-	// 2
-	fmt.Println(maximumWhiteTiles(s, 2))
+	c := Constructor()
+	c.Add(2, 3)
+	c.Add(7, 10)
+	fmt.Println(c.Count())
+	fmt.Println(c.data)
+	// 6
+
 }
 
-func maximumWhiteTiles(tiles [][]int, carpetLen int) int {
-	QuickSort(0, len(tiles)-1, tiles)
-	max := 0
-	for i := 0; i < len(tiles); i++ {
-		lenTmp := carpetLen - getLen(tiles[i])
-		lenSum := getLen(tiles[i])
-		nowIndex := i + 1
-		// 拿到从这个下标开始的覆盖的长度
-		for lenTmp > 0 {
-			if nowIndex >= len(tiles) {
-				break
-			}
-			// 处理空白
-			lenTmp -= tiles[nowIndex][0] - tiles[nowIndex-1][1] - 1
-			if lenTmp <= 0 || lenSum+lenTmp <= max {
-				break
-			}
-			thisLen := getLen(tiles[nowIndex])
-			if lenTmp >= thisLen {
-				lenTmp -= thisLen
-				lenSum += thisLen
-				nowIndex++
-			} else {
-				// 剩下的长度比现在这条短
-				lenSum += lenTmp
-				break
-			}
-		}
-		if lenSum > max {
-			max = lenSum
-		}
+type CountIntervals struct {
+	data [][2]int
+}
+
+func Constructor() CountIntervals {
+	data := make([][2]int, 0, 100000)
+	return CountIntervals{data}
+}
+
+func (this *CountIntervals) Add(left int, right int) {
+	this.data = append(this.data, [2]int{left, right})
+}
+
+func (this *CountIntervals) Count() int {
+	this.f()
+	count := 0
+	for _, v := range this.data {
+		count += v[1] - v[0] + 1
 	}
-
-	return max
+	return count
 }
 
-func getLen(x []int) int {
-	return x[1] - x[0] + 1
+// 优化
+func (this *CountIntervals) f() {
+	fmt.Println(this.data)
+	if len(this.data) > 0 {
+		QuickSort(0, len(this.data)-1, this.data)
+		k := 0
+		tmp := [2]int{0, 0}
+		n := make([][2]int, 0, 100000)
+		for k < len(this.data) {
+			fmt.Println("k", k)
+			fmt.Println("kd", this.data[k])
+			if tmp[0] == 0 || tmp[1] >= this.data[k][0] {
+				if tmp[0] == 0 {
+					tmp[0] = this.data[k][0]
+					tmp[1] = this.data[k][1]
+				} else {
+					if tmp[1] < this.data[k][1] {
+						// 不包含下一个区间
+						tmp[1] = this.data[k][1]
+					}
+				}
+				fmt.Println("kk", this.data[k])
+			} else {
+				// 不包含下一个
+				n = append(n, tmp)
+				fmt.Println("kkk", tmp)
+				tmp[0] = this.data[k][0]
+				tmp[1] = this.data[k][1]
+
+			}
+			k++
+		}
+		if tmp[0] != 0 {
+			fmt.Println("tttttt", tmp)
+			n = append(n, tmp)
+		}
+		this.data = n[:]
+		fmt.Println(n)
+	}
 }
 
-func QuickSort(left int, right int, array [][]int) {
+func QuickSort(left int, right int, array [][2]int) {
 	l := left
 	r := right
 	pivot := array[(left+right)/2]
-	var temp []int
+	var temp [2]int
 	for l < r {
 		for array[l][0] < pivot[0] {
 			l++

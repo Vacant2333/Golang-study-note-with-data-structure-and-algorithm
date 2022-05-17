@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"strconv"
+)
 
 // 定义全局变量 第一种 (定义全局变量不能用 := )
 var q1 = 150
@@ -55,9 +59,15 @@ func main() {
 	var m1, s1, f1 = 100, "dad", 10.5
 	fmt.Println(m1, s1, f1)
 
-	//多变量声明 第三种: 类型不一样(自动判断类型)
+	// 多变量声明 第三种: 类型不一样(自动判断类型)
 	m2, s2, f2 := 105, "mom", "9.9"
 	fmt.Println(m2, s2, f2)
+
+	// 多变量声明 补充: := 左边,有至少一个没被声明过
+	// err前面声明过了,但是第二行又可以,因为x没有声明过
+	err := errors.New("test")
+	x, err := strconv.Atoi("testttt")
+	fmt.Println(x, err)
 
 	//全局变量输出
 	fmt.Println(q1, q2, q3)

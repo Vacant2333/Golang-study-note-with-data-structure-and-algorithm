@@ -29,6 +29,15 @@ func main() {
 	p := &arr
 	p[3] = 0
 	fmt.Println(arr)
+
+	// 指针是可以判断相等的,相等的情况有两种
+	// 1.两个指针都是nil 2.两个指针指向同一个地址
+	var p1, p2 *int
+	fmt.Println("p1 == p2", p1, p2, p1 == p2)
+	x := 10
+	p1 = &x
+	p2 = &x
+	fmt.Println("p1 == p2", p1, p2, p1 == p2)
 }
 
 func changeValue(a *int) {
