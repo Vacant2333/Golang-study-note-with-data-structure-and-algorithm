@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unsafe"
+)
 
 func main() {
 	/*
@@ -24,7 +27,10 @@ func main() {
 	fmt.Printf("new a: %T %v %v \n", a, a, *a)
 
 	// 大小为0的类型
-	fmt.Println("[0]int len:", len(*new([0]int)))
+	p1 := new([0]int)
+	p2 := &struct{}{}
+	fmt.Println("[0]int sizeof: ", unsafe.Sizeof(*p1), " p1: ", p1)
+	fmt.Println("struct {}{} sizeof: ", unsafe.Sizeof(*p2), "p2: ", p2)
 
 	// new只是一个预定义的函数,并不是一个关键字,因此我们可以将new定义为别的类型
 	new := 10
