@@ -55,16 +55,18 @@ func (heap *Heap) shiftUp(index int) {
 	}
 }
 
-// shiftDown 下滤,将一个(第一个)节点向下移动到正确的位置(最大堆)
+// shiftDown 下滤,将一个(一般是第一个)节点向下移动到正确的位置(最大堆)
 func (heap *Heap) shiftDown(index int) {
 	// 父节点
 	parent := index
 	// 左儿子节点
 	leftChild := index * 2
-	// 左右的儿子节点都小于父节点的时候退出    (父节点 > 左节点 && (不存在右节点 || 父节点 > 右节点))
-	for (*heap)[parent] > (*heap)[leftChild] && (len(*heap) <= leftChild+1 || (*heap)[parent] > (*heap)[leftChild+1]) {
+	// 堆的长度
+	heapLen := len(*heap)
+	// 父节点是叶子结点或者左右的儿子节点都小于父节点的时候退出    (存在叶子结点 && (父节点 < 左节点 || (存在右节点 && 父节点 < 右节点)))
+	for leftChild < heapLen && ((*heap)[parent] < (*heap)[leftChild] || (heapLen > leftChild+1 && (*heap)[parent] < (*heap)[leftChild+1])) {
 		// 如果存在右节点且右节点大于父节点和左节点
-		if len(*heap) > leftChild+1 && (*heap)[leftChild+1] > (*heap)[parent] && (*heap)[leftChild+1] > (*heap)[leftChild] {
+		if heapLen > leftChild+1 && (*heap)[leftChild+1] > (*heap)[parent] && (*heap)[leftChild+1] > (*heap)[leftChild] {
 			// 交换右节点和父节点
 			heap.swap(parent, leftChild+1)
 			parent = leftChild + 1
@@ -75,8 +77,8 @@ func (heap *Heap) shiftDown(index int) {
 		}
 		leftChild = parent * 2
 	}
-
 	/*
+		// 这个版本理解更轻松,上面那个版本更简洁
 		for {
 			// 最大下标
 			maxIndex := len(*heap) - 1
@@ -121,4 +123,9 @@ func (heap *Heap) shiftDown(index int) {
 // swap 交换两个元素
 func (heap *Heap) swap(index1, index2 int) {
 	(*heap)[index1], (*heap)[index2] = (*heap)[index2], (*heap)[index1]
+}
+
+// validate 检查堆的正确性
+func (heap *Heap) validate() bool {
+
 }
