@@ -101,3 +101,13 @@ func ShellSort(s []int) {
 		sedgewickIndex++
 	}
 }
+
+// HeapSort 堆排序
+func HeapSort(s int[]) {
+
+}
+
+// 堆排序,下滤
+func shiftUp() {
+
+}
