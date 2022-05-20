@@ -1,10 +1,12 @@
 package heap
 
+import "math"
+
 /*
 	Heap堆(最大堆):
 		堆序性:大根堆的左右节点都比根小,也就是头节点是最大值(还有小根堆)
 		第一个元素留空 不使用
-		节点下标为i时，左子节点下标为2i+1,右子节点下标为2i+2,父节点是i/2 (3/2 = 2/2 = 1,整除)
+		节点下标为i时，左子节点下标为2i,右子节点下标为2i+1,父节点是i/2 (3/2 = 2/2 = 1,整除)
 		所有的叶子应处于第h/h-1层(h是树的高度),也就是说应是一棵完全二插树
 			入队			出队
 	普通数组	O(1)		O(n)
@@ -125,7 +127,34 @@ func (heap *Heap) swap(index1, index2 int) {
 	(*heap)[index1], (*heap)[index2] = (*heap)[index2], (*heap)[index1]
 }
 
-// validate 检查堆的正确性
+// validate 检查堆的正确性,每个根节点要大于他的所有子节点
 func (heap *Heap) validate() bool {
+	for i := 1; i < len(*heap); i++ {
+		if (*heap)[i] != ElementType(heap.getMax(i)) {
+			return false
+		}
+	}
+	return true
+}
 
+// getMax 获得子树中的最大值,辅助validate
+func (heap *Heap) getMax(index int) float64 {
+	if index < len(*heap) {
+		heapLen := len(*heap)
+		parentValue := float64((*heap)[index])
+		left := index * 2
+		right := left + 1
+		if heapLen > right {
+			// 存在左右儿子节点
+			return math.Max(parentValue, math.Max(heap.getMax(left), heap.getMax(right)))
+		} else if heapLen > left {
+			// 存在左二子
+			return math.Max(parentValue, heap.getMax(left))
+		} else {
+			// 没有儿子节点
+			return parentValue
+		}
+	} else {
+		return math.MinInt
+	}
 }

@@ -34,4 +34,5 @@ func TestHeap_GetMax(t *testing.T) {
 	fmt.Println(heap)
 	fmt.Println("Max: ", heap.GetMax())
 	fmt.Println(heap)
+	fmt.Println(heap.validate())
 }
