@@ -1,6 +1,8 @@
 package heap
 
-import "math"
+import (
+	"math"
+)
 
 /*
 	Heap堆(最大堆):

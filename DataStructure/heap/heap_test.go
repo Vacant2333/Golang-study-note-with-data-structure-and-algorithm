@@ -1,38 +1,29 @@
 package heap
 
 import (
-	"fmt"
 	"testing"
 )
 
 var heap Heap
+var n = 1000000
 
 func TestCreate(t *testing.T) {
 	heap = Create()
-	fmt.Println(heap)
 }
 
 func TestHeap_Insert(t *testing.T) {
-	heap = Create()
-	heap.Insert(1)
-	heap.Insert(3)
-	heap.Insert(5)
-	heap.Insert(6)
-	heap.Insert(4)
-	heap.Insert(7)
-	fmt.Println(heap)
+	for i := 0; i <= n; i++ {
+		heap.Insert(ElementType(i))
+	}
 }
 
 func TestHeap_GetMax(t *testing.T) {
-	heap = Create()
-	heap.Insert(1)
-	heap.Insert(3)
-	heap.Insert(5)
-	heap.Insert(6)
-	heap.Insert(4)
-	heap.Insert(7)
-	fmt.Println(heap)
-	fmt.Println("Max: ", heap.GetMax())
-	fmt.Println(heap)
-	fmt.Println(heap.validate())
+	if heap.validate() == false {
+		t.Errorf("validate error!")
+	}
+	for i := n; i >= 0; i-- {
+		if heap.GetMax() != ElementType(i) {
+			t.Errorf("GetMax error!")
+		}
+	}
 }
