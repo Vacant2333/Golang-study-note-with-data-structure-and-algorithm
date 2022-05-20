@@ -86,14 +86,14 @@ func ShellSort(s []int) {
 	for sedgewick[sedgewickIndex] > len(s) {
 		sedgewickIndex++
 	}
-	// 可以把插入排序的增量理解为1,这里换成sedgewick的元素,一直想下取直到0
-	for d := sedgewick[sedgewickIndex]; d > 0; d = sedgewick[sedgewickIndex] {
+	// 可以把插入排序的增量理解为1,这里换成sedgewick的元素,一直向下取直到0
+	for distance := sedgewick[sedgewickIndex]; distance > 0; distance = sedgewick[sedgewickIndex] {
 		// 插入排序
-		for i := d; i < len(s); i++ {
+		for i := distance; i < len(s); i++ {
 			tmp := s[i]
 			k := i
-			for ; k >= d && s[k-d] > tmp; k -= d {
-				s[k] = s[k-d]
+			for ; k >= distance && s[k-distance] > tmp; k -= distance {
+				s[k] = s[k-distance]
 			}
 			s[k] = tmp
 		}
