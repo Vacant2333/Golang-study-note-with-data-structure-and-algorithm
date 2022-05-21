@@ -13,6 +13,8 @@ import "fmt"
 
 	对于数组 var a[10]int
 	a[0:10] = a[:10] = a[0:] = a[:] 都是等价的
+
+	切片的copy函数在12.内置函数中
 */
 
 func main() {

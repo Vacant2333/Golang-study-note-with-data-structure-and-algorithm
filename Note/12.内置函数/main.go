@@ -14,13 +14,15 @@ func main() {
 		make(type, len, cap) 用于slice/map/chan
 
 		append在 15.切片slice 有解释
-	*/
 
-	/*
-			new 用来分配内存,主要分配值类型,第一个参数是类型,返回值是地址
-			注意: 如果类型的大小是0,例如struct{} [0]int,有可能返回相同的地址(依赖具体的实现)
-		          谨慎使用大小为0的类型
-			new函数使用相对比较少,一般用字面量语法创建会更灵活  student{"xx"}
+		copy(destSlice, srcSlice) int    将src的内容复制到dest中
+		从dest的0下标开始复制,如果dest的长度小于src就会漏掉后面的元素
+		返回实际发生复制操作的元素个数
+
+		new 用来分配内存,主要分配值类型,第一个参数是类型,返回值是地址
+		注意: 如果类型的大小是0,例如struct{} [0]int,有可能返回相同的地址(依赖具体的实现)
+			  谨慎使用大小为0的类型
+		new函数使用相对比较少,一般用字面量语法创建会更灵活  student{"xx"}
 	*/
 	a := new(int64)
 	*a = 100
@@ -35,4 +37,11 @@ func main() {
 	// new只是一个预定义的函数,并不是一个关键字,因此我们可以将new定义为别的类型
 	new := 10
 	fmt.Println(new)
+
+	// copy
+	dest := []int{1, 2, 3, 4, 5}
+	src := []int{6, 7, 8}
+	copy(dest, src)
+	// [6 7 8 4 5],src的前三个元素把dest的前三个元素覆盖了
+	fmt.Println("copy dest:", dest)
 }
