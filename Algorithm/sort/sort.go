@@ -103,11 +103,35 @@ func ShellSort(s []int) {
 }
 
 // HeapSort 堆排序
-func HeapSort(s int[]) {
-
+// 实际使用没有用sedgewick序列的希尔排序效果好
+func HeapSort(s []int) {
+	var i int
+	for i = len(s)/2 - 1; i >= 0; i-- {
+		shiftDown(s, i, len(s))
+	}
+	for i = len(s) - 1; i > 0; i-- {
+		// 把最大值放到最后
+		s[0], s[i] = s[i], s[0]
+		shiftDown(s, 0, i)
+	}
 }
 
-// 堆排序,下滤
-func shiftUp() {
-
+// shiftDown 堆排序,下滤
+func shiftDown(s []int, root int, N int) {
+	// 将前N个元素以root为根的子堆调整为最大堆
+	var parent, child, X int
+	X = s[root]
+	for parent = root; parent*2+1 < N; parent = child {
+		child = parent*2 + 1
+		// 如果存在右节点且右节点更大, child指向更大的节点(右节点)
+		if child <= N-2 && s[child] < s[child+1] {
+			child++
+		}
+		if X >= s[child] {
+			break
+		} else {
+			s[parent] = s[child]
+		}
+	}
+	s[parent] = X
 }
