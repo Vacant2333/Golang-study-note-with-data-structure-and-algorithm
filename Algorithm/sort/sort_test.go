@@ -1,41 +1,48 @@
 package sort
 
 import (
-	"fmt"
+	"math/rand"
 	"testing"
 )
 
 // 测试用例
-var a1 = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 9}
-var a2 = []int{1, 2, 3, 4, 5, 6, 2, 7, 8, 9}
-var a3 = []int{6, 8, 9, 7, 5, 4, 1, 2, 3, 9}
-var a4 = []int{6, 8, 9, 7, 5, 4, 1, 2, 3, 9}
-var a5 = []int{6, 8, 9, 7, 5, 4, 1, 2, 3, 9}
+var s1, s2, s3, s4 []int
 
-func TestIsSorted(t *testing.T) {
-	fmt.Println(IsSorted(a1))
-	fmt.Println(IsSorted(a2))
-}
-
-func TestIntBinarySearch(t *testing.T) {
-	for index, v := range a1 {
-		searchIndex, searchError := IntBinarySearch(a1, v)
-		fmt.Println(index, v, searchIndex, searchError)
+func init() {
+	// 初始化测试数据,100w个元素
+	for i := 0; i < 1000000; i++ {
+		n := rand.Int()
+		s1 = append(s1, n)
+		s2 = append(s2, n)
+		s3 = append(s3, n)
+		s4 = append(s4, n)
 	}
-	fmt.Println(IntBinarySearch(a1, 20))
 }
 
 func TestBubbleSort(t *testing.T) {
-	BubbleSort(a3)
-	fmt.Println(a3)
+	BubbleSort(s1)
+	if IsSorted(s1) == false {
+		t.Error("BubbleSort error")
+	}
 }
 
 func TestInsertionSort(t *testing.T) {
-	InsertionSort(a4)
-	fmt.Println(a4)
+	InsertionSort(s2)
+	if IsSorted(s2) == false {
+		t.Error("InsertionSort error")
+	}
 }
 
 func TestShellSort(t *testing.T) {
-	ShellSort(a5)
-	fmt.Println(a5)
+	ShellSort(s3)
+	if IsSorted(s3) == false {
+		t.Error("ShellSort error")
+	}
+}
+
+func TestHeapSort(t *testing.T) {
+	HeapSort(s4)
+	if IsSorted(s4) == false {
+		t.Error("HeapSort error")
+	}
 }
