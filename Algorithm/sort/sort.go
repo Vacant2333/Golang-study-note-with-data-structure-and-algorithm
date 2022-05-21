@@ -166,14 +166,14 @@ func SleepSort(s []int) {
 	// 协程传回元素(越小的元素sleep越短,位置就越靠前)
 	outChan := make(chan int, len(s))
 	// 睡眠协程,传入元素和chan
-	sleepRoutine := func(out chan int, x int) {
+	sleepRoutine := func(x int) {
 		// 等待时间: 元素大小 * 500ms
 		time.Sleep(time.Millisecond * 500 * time.Duration(x))
-		out <- x
+		outChan <- x
 	}
 	// 启动协程,进行排序
 	for i := 0; i < len(s); i++ {
-		go sleepRoutine(outChan, s[i])
+		go sleepRoutine(s[i])
 	}
 	// 从chan读出排序好的数据
 	for i := 0; i < len(s); i++ {
@@ -184,5 +184,57 @@ func SleepSort(s []int) {
 // MergeSort 归并排序 O(nlogn)
 // 分治+递归 http://c.biancheng.net/algorithm/merge-sort.html
 func MergeSort(s []int) {
-
+	// 合并两个有序子序列 [left, right]
+	merge := func(left, mid, right int) {
+		// 左序列: [left, mid)  右序列: [mid, right]
+		// 需要合并的序列总长度
+		length := right - left + 1
+		// 用来存合并后的结果
+		tmp := make([]int, length)
+		// 起点
+		leftP := left
+		rightP := mid
+		tmpP := 0
+		for leftP < mid || rightP <= right {
+			if leftP < mid && rightP <= right {
+				// left和right都还有元素,拿出较小的那个放进tmp
+				if s[leftP] < s[rightP] {
+					// left较小
+					tmp[tmpP] = s[leftP]
+					leftP++
+				} else {
+					// right较小
+					tmp[tmpP] = s[rightP]
+					rightP++
+				}
+			} else if leftP < mid {
+				// left还有元素
+				tmp[tmpP] = s[leftP]
+				leftP++
+			} else {
+				// right还有元素
+				tmp[tmpP] = s[rightP]
+				rightP++
+			}
+			tmpP++
+		}
+		// 把tmp的数据写入到s
+		for i := 0; i < len(tmp); i++ {
+			s[left+i] = tmp[i]
+		}
+	}
+	// 对区间[left, right]进行合并排序
+	var mergeSort func(left, right int)
+	mergeSort = func(left, right int) {
+		// 相等的情况就是只有一个元素,不做任何操作
+		if left != right {
+			mid := (right + left) / 2
+			// 先把两边排好序
+			mergeSort(left, mid)
+			mergeSort(mid+1, right)
+			// 然后合并两边,两边都是有序子序列
+			merge(left, mid+1, right)
+		}
+	}
+	mergeSort(0, len(s)-1)
 }

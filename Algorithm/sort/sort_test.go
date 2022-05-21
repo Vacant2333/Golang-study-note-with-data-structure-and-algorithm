@@ -7,7 +7,7 @@ import (
 )
 
 // 测试用例
-var s1, s2, s3, s4 []int
+var s1, s2, s3, s4, s5 []int
 
 func init() {
 	// 初始化测试数据,100w个元素
@@ -17,6 +17,7 @@ func init() {
 		s2 = append(s2, n)
 		s3 = append(s3, n)
 		s4 = append(s4, n)
+		s5 = append(s5, n)
 	}
 }
 
@@ -62,5 +63,12 @@ func TestSleepSort(t *testing.T) {
 	if IsSorted(s) == false {
 		fmt.Println(s)
 		t.Error("SleepSort error :(")
+	}
+}
+
+func TestMergeSort(t *testing.T) {
+	MergeSort(s5)
+	if IsSorted(s5) == false {
+		t.Error("MergeSort error")
 	}
 }
