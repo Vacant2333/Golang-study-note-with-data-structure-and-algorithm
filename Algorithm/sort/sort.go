@@ -1,6 +1,9 @@
 package sort
 
-import "math/rand"
+import (
+	"math/rand"
+	"time"
+)
 
 /*
 	冒泡和插入排序中有一个概念叫逆序对,如果某两个元素a[i] > [aj]
@@ -20,8 +23,11 @@ import "math/rand"
 		冒泡排序 done
 		插入排序 done
 		希尔排序 done
+		堆排序   done
+		猴子排序 done
+		睡眠排序 done
+		归并排序
 		快速排序
-	TODO: 快排
 */
 
 // IsSorted 判断是否已排序(升序)好
@@ -107,41 +113,42 @@ func ShellSort(s []int) {
 // HeapSort 堆排序
 // 实际使用没有用sedgewick序列的希尔排序效果好
 func HeapSort(s []int) {
+	// shiftDown 堆排序,下滤(原版可看DataStructure/heap)
+	shiftDown := func(root int, N int) {
+		// 将前N个元素以root为根的子堆调整为最大堆
+		var parent, child, X int
+		X = s[root]
+		for parent = root; parent*2+1 < N; parent = child {
+			child = parent*2 + 1
+			// 如果存在右节点且右节点更大, child指向更大的节点(右节点)
+			if child <= N-2 && s[child] < s[child+1] {
+				child++
+			}
+			if X >= s[child] {
+				break
+			} else {
+				s[parent] = s[child]
+			}
+		}
+		s[parent] = X
+	}
+
 	var i int
+
 	for i = len(s)/2 - 1; i >= 0; i-- {
-		shiftDown(s, i, len(s))
+		shiftDown(i, len(s))
 	}
 	for i = len(s) - 1; i > 0; i-- {
 		// 把最大值放到最后
 		s[0], s[i] = s[i], s[0]
-		shiftDown(s, 0, i)
+		shiftDown(0, i)
 	}
 }
 
-// shiftDown 堆排序,下滤
-func shiftDown(s []int, root int, N int) {
-	// 将前N个元素以root为根的子堆调整为最大堆
-	var parent, child, X int
-	X = s[root]
-	for parent = root; parent*2+1 < N; parent = child {
-		child = parent*2 + 1
-		// 如果存在右节点且右节点更大, child指向更大的节点(右节点)
-		if child <= N-2 && s[child] < s[child+1] {
-			child++
-		}
-		if X >= s[child] {
-			break
-		} else {
-			s[parent] = s[child]
-		}
-	}
-	s[parent] = X
-}
-
-// BogoSort 猴子排序 最坏情况:O(∞),一辈子也出不来结果
-// 每次把原始数据打乱一次,如果排序好了就返回 没排序好就继续打乱
+// BogoSort 猴子排序 平均复杂度:O(n*n!)(这是我见过效率最低的算法)
+// 每次把原始数据打乱一次,如果排序好了就返回,没排序好就继续打乱
 func BogoSort(s []int) {
-	// 打乱这个数组的元素
+	// 打乱这个数组的元素(洗牌)
 	rand.Shuffle(len(s), func(i, j int) {
 		s[i], s[j] = s[j], s[i]
 	})
@@ -149,4 +156,33 @@ func BogoSort(s []int) {
 	if IsSorted(s) == false {
 		BogoSort(s)
 	}
+}
+
+// SleepSort 睡眠排序 复杂度:????(效率和上面那个猴子排序有的一拼)
+// 原理:先睡醒的线程他所表示的元素就是比较小的那个,直接传回去
+// 不能有负数,如果有负数可以通过加偏移量来处理!!
+// 如果sleep设置过小可能会有误差导致排序失败
+func SleepSort(s []int) {
+	// 协程传回元素(越小的元素sleep越短,位置就越靠前)
+	outChan := make(chan int, len(s))
+	// 睡眠协程,传入元素和chan
+	sleepRoutine := func(out chan int, x int) {
+		// 等待时间: 元素大小 * 500ms
+		time.Sleep(time.Millisecond * 500 * time.Duration(x))
+		out <- x
+	}
+	// 启动协程,进行排序
+	for i := 0; i < len(s); i++ {
+		go sleepRoutine(outChan, s[i])
+	}
+	// 从chan读出排序好的数据
+	for i := 0; i < len(s); i++ {
+		s[i] = <-outChan
+	}
+}
+
+// MergeSort 归并排序 O(nlogn)
+// 分治+递归 http://c.biancheng.net/algorithm/merge-sort.html
+func MergeSort(s []int) {
+
 }

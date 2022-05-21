@@ -1,6 +1,7 @@
 package sort
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 )
@@ -52,5 +53,14 @@ func TestBogoSort(t *testing.T) {
 	BogoSort(s)
 	if IsSorted(s) == false {
 		t.Error("BogoSort error")
+	}
+}
+
+func TestSleepSort(t *testing.T) {
+	s := []int{2, 10, 5, 8, 3, 12, 9, 8}
+	SleepSort(s)
+	if IsSorted(s) == false {
+		fmt.Println(s)
+		t.Error("SleepSort error :(")
 	}
 }
