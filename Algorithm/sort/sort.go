@@ -1,5 +1,7 @@
 package sort
 
+import "math/rand"
+
 /*
 	冒泡和插入排序中有一个概念叫逆序对,如果某两个元素a[i] > [aj]
 	则称i,j是一个逆序对,冒泡和插入排序对同一组数据排序时,效率实际
@@ -134,4 +136,17 @@ func shiftDown(s []int, root int, N int) {
 		}
 	}
 	s[parent] = X
+}
+
+// BogoSort 猴子排序 最坏情况:O(∞),一辈子也出不来结果
+// 每次把原始数据打乱一次,如果排序好了就返回 没排序好就继续打乱
+func BogoSort(s []int) {
+	// 打乱这个数组的元素
+	rand.Shuffle(len(s), func(i, j int) {
+		s[i], s[j] = s[j], s[i]
+	})
+	// 没排序好,再跑一次 :(
+	if IsSorted(s) == false {
+		BogoSort(s)
+	}
 }

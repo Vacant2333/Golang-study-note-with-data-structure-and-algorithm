@@ -46,3 +46,11 @@ func TestHeapSort(t *testing.T) {
 		t.Error("HeapSort error")
 	}
 }
+
+func TestBogoSort(t *testing.T) {
+	s := []int{20, 4, 12, 5, 2, 99, -2, 421}
+	BogoSort(s)
+	if IsSorted(s) == false {
+		t.Error("BogoSort error")
+	}
+}
