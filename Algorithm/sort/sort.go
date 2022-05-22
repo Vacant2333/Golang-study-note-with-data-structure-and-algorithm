@@ -26,7 +26,7 @@ import (
 		堆排序   done
 		猴子排序 done
 		睡眠排序 done
-		归并排序
+		归并排序 done
 		快速排序
 */
 
@@ -44,6 +44,7 @@ func IsSorted(s []int) bool {
 // 时间效率:最好O(n),最坏O(n^2)
 // http://c.biancheng.net/view/6506.html
 func BubbleSort(s []int) {
+	// right(右边界)是指不遍历的元素数量,从右往左数,用来缩减需要遍历的元素
 	for right := 1; right < len(s); right++ {
 		// 如果一趟排序中flag没有变为true就表示数据已排序好,直接break
 		flag := false
@@ -132,14 +133,12 @@ func HeapSort(s []int) {
 		}
 		s[parent] = X
 	}
-
-	var i int
-
-	for i = len(s)/2 - 1; i >= 0; i-- {
+	// 将数组化为一个最大堆
+	for i := len(s)/2 - 1; i >= 0; i-- {
 		shiftDown(i, len(s))
 	}
-	for i = len(s) - 1; i > 0; i-- {
-		// 把最大值放到最后
+	// 把最大值放到最后
+	for i := len(s) - 1; i > 0; i-- {
 		s[0], s[i] = s[i], s[0]
 		shiftDown(0, i)
 	}
