@@ -61,7 +61,7 @@ func main() {
 	fmt.Println(b)
 
 	/*
-		切片的拷贝操作
+		切片的拷贝操作,详细在12.内置函数中
 		copy(target, src)
 	*/
 	slice := make([]int, 10)
@@ -89,5 +89,7 @@ func main() {
 }
 
 func test(slice []int) {
+	// 注意:函数内可以改切片的元素数据
+	// 但是不能改cap和len,必须传指针才可以改
 	slice[0] = 10
 }
