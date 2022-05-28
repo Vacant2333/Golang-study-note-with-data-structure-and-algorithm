@@ -5,17 +5,12 @@ import "fmt"
 // https://leetcode.cn/problems/first-unique-character-in-a-string/
 
 func firstUniqChar(s string) int {
-	m := make(map[byte]bool)
+	m := [26]int{}
 	for i := 0; i < len(s); i++ {
-		k := s[i]
-		if _, ok := m[k]; ok {
-			m[k] = true
-		} else {
-			m[k] = false
-		}
+		m[s[i]-'a'] += 1
 	}
-	for i := 0; i < len(s); i++ {
-		if v, ok := m[s[i]]; ok && !v {
+	for i, c := range s {
+		if m[c-'a'] == 1 {
 			return i
 		}
 	}
