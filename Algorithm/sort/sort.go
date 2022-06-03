@@ -181,6 +181,7 @@ func SleepSort(s []int) {
 }
 
 // MergeSort 归并排序 O(nlogn)
+// 可以在外面声明一个和原数组一样长的tmp来提高效率(不然每次merge都要allocate)
 // 分治+递归 http://c.biancheng.net/algorithm/merge-sort.html
 func MergeSort(s []int) {
 	// 合并两个有序子序列 [left, right]
@@ -190,9 +191,11 @@ func MergeSort(s []int) {
 		length := right - left + 1
 		// 用来存合并后的结果
 		tmp := make([]int, length)
-		// 起点
+		// 左区间起点
 		leftP := left
+		// 右区间起点
 		rightP := mid
+		// tmp的起点(把归并后的元素依次放入tmp)
 		tmpP := 0
 		for leftP < mid || rightP <= right {
 			if leftP < mid && rightP <= right {
@@ -218,9 +221,7 @@ func MergeSort(s []int) {
 			tmpP++
 		}
 		// 把tmp的数据写入到s
-		for i := 0; i < len(tmp); i++ {
-			s[left+i] = tmp[i]
-		}
+		copy(s[left:], tmp)
 	}
 	// 对区间[left, right]进行合并排序
 	var mergeSort func(left, right int)
