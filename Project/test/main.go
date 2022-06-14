@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"hash/fnv"
 )
 
 // fibonacci 斐波那契 返回一个“返回int的函数”
@@ -27,17 +27,13 @@ func main() {
 		s := make([]int, 5)
 		fmt.Println(s[0], &s[0])
 	*/
-	decode("1234567")
+	// fmt.Println(unicode.IsLetter('A'))
+	// fmt.Println(os.Getuid())
+	fmt.Println(ihash("alloy"), ihash("work"), ihash("out"))
 }
 
-func decode(num string) {
-	for i, v := range num {
-		fmt.Printf("range: index:%v value:%v int32(v):%v \n", i, v, v&15)
-	}
-	fmt.Println("-----------")
-	for i := 0; i < len(num); i++ {
-		tmp, _ := strconv.Atoi(num[i])
-		fmt.Printf("i index:%v int32(v):%v", i, num[i])
-	}
-
+func ihash(key string) int {
+	h := fnv.New32a()
+	h.Write([]byte(key))
+	return int(h.Sum32() & 0x7fffffff)
 }
