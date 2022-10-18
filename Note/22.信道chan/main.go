@@ -40,6 +40,7 @@ func main() {
 	ch2 <- 10
 	ch2 <- 20
 	fmt.Println(<-ch2, <-ch2)
+	close(ch2)
 
 	// range和close
 	// 发送者可通过close关闭一个信道(表示没有需要发送的值了)

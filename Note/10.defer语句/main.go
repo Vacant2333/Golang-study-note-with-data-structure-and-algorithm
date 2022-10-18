@@ -20,6 +20,17 @@ func sum(n1 int, n2 int) int {
 	return res // 1.
 }
 
+func test() int {
+	f := func(s string) int {
+		fmt.Println(s)
+		return 0
+	}
+	// return先执行,然后是defer
+	defer f("s1")  // 6.
+	return f("s2") // 5.
+}
+
 func main() {
 	fmt.Println(sum(1, 5)) // 4.
+	test()
 }
