@@ -48,4 +48,10 @@ func main() {
 	case t := <-time.After(2 * time.Second):
 		fmt.Println("超时了 t:", t)
 	}
+
+	// 关闭信道
+	c := make(chan int)
+	close(c)
+	// 在这里c没有被手动传入过值,但是close信道时会传入一个初始值,这里是0
+	fmt.Println(<-c)
 }
