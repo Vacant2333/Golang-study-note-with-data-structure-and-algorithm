@@ -86,6 +86,11 @@ func main() {
 	fmt.Println(s[2:10])
 	ss := []rune("php是世界上最好的语言")
 	fmt.Printf("%c", ss[3:4])
+
+	// 删除元素
+	ints := []int{1}
+	ints = ints[1:]
+	fmt.Println(ints)
 }
 
 func test(slice []int) {
