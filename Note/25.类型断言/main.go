@@ -54,4 +54,11 @@ func main() {
 	n3.(interface {
 		run()
 	}).run()
+
+	var a interface{}
+	a = map[string]int{"s1": 5}
+	fmt.Println(a.(Test))
 }
+
+// Test 必须有等于号,也就是类型别名不然无法转为Test类型
+type Test = map[string]int
