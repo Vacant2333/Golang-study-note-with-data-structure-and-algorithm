@@ -21,7 +21,7 @@ func main() {
 
 	// 遍历字符串 同时处理中文
 	for index, c := range str {
-		fmt.Printf("%d->%c|", index, c)
+		fmt.Printf("%d->%c[%T]|", index, c, c)
 	}
 	fmt.Println()
 	// 遍历字符串 第二种 也可以处理中文
