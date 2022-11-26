@@ -33,4 +33,14 @@ func test() int {
 func main() {
 	fmt.Println(sum(1, 5)) // 4.
 	test()
+
+	// 先输出2后输出1,defer中即使某个func panic了,也会执行所有的func
+	// print(1)先入栈,而后是print(2),按照先进后出的原则
+	defer func() {
+		fmt.Println(1)
+	}()
+	defer func() {
+		a := 0
+		fmt.Println(2 / a)
+	}()
 }

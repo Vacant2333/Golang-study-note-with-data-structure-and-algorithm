@@ -30,6 +30,14 @@ func main() {
 	// fmt.Println(unicode.IsLetter('A'))
 	// fmt.Println(os.Getuid())
 	fmt.Println(ihash("alloy"), ihash("work"), ihash("out"))
+
+	defer func() {
+		fmt.Println(1)
+	}()
+	defer func() {
+		a := 0
+		fmt.Println(2 / a)
+	}()
 }
 
 func ihash(key string) int {
