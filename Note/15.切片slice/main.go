@@ -91,6 +91,20 @@ func main() {
 	ints := []int{1}
 	ints = ints[1:]
 	fmt.Println(ints)
+
+	/*
+		slice的扩容,长度在[0, 1024]内的话,每次扩容是就容量的两倍,如果旧容量大于等于1024
+		最终容量从就容量开始循环增加1/4,直到新容量大于等于申请的容量(貌似不太对,挺复杂的)
+	*/
+	sss := make([]int, 0)
+	old := 0
+	for len(sss) < 2048 {
+		sss = append(sss, 1)
+		if old != cap(sss) {
+			fmt.Printf("sss cap[%v]\n", cap(sss))
+		}
+		old = cap(sss)
+	}
 }
 
 func test(slice []int) {
