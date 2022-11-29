@@ -29,15 +29,35 @@ func main() {
 	*/
 	// fmt.Println(unicode.IsLetter('A'))
 	// fmt.Println(os.Getuid())
-	fmt.Println(ihash("alloy"), ihash("work"), ihash("out"))
+	//fmt.Println(ihash("alloy"), ihash("work"), ihash("out"))
+	//
+	//defer func() {
+	//	fmt.Println(1)
+	//}()
+	//defer func() {
+	//	a := 0
+	//	fmt.Println(2 / a)
+	//}()
 
-	defer func() {
-		fmt.Println(1)
-	}()
-	defer func() {
-		a := 0
-		fmt.Println(2 / a)
-	}()
+	//sendData := make(map[string]interface{})
+	//
+	//sendData["topcolor"] = "#FF0000"
+	//data := make(map[string]map[string]interface{})
+	//data["nowDate"] = make(map[string]interface{})
+	//data["nowDate"]["value"] = "黄先生"
+	//
+	//sendData["data"] = data
+
+	a := []int{1, 2, 3}
+	change(&a)
+	fmt.Println(a)
+}
+
+func change(a *[]int) {
+	s := *a
+	s[0] = 0
+
+	a = &s
 }
 
 func ihash(key string) int {
