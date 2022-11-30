@@ -39,4 +39,27 @@ func main() {
 	}{make(map[string]int, 10), make([]int, 10)}
 	com.m["test"] = 10
 	fmt.Println(com)
+
+	/*
+		结构体之间的比较,同类型的结构体之间,使用指针比较则是比较是否为同一个结构体,不用管是否有不可比较的元素
+		如果要比较两个相同结构体之间的内容,必须保证结构体的所有参数都是可比较的类型,比如slice或者map就不行
+	*/
+	student1 := new(student)
+	student2 := new(student)
+	// 比较两个student的内容是否相等
+	fmt.Println(*student1 == *student2)
+	studentInfo1 := new(studentInfo)
+	studentInfo2 := new(studentInfo)
+	// 因为studentInfo有一个slice结构,所以不能进行比较,只能对他们的指针/地址进行比较
+	fmt.Println(studentInfo1 == studentInfo2)
+}
+
+type student struct {
+	name string
+	age  int
+}
+
+type studentInfo struct {
+	name string
+	data []int
 }
