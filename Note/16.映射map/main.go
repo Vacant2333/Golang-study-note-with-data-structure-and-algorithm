@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 /*
 	map 是 key -> value 数据结构,又称为字段或关联数组 (字典/映射)
@@ -38,5 +41,21 @@ func main() {
 	if value, ok := m["a3"]; ok {
 		// 这里不会执行 因为没有a3这个key
 		fmt.Println("有这个key value是", value)
+	}
+
+	// 实现顺序读取,先sort key然后读
+	unsortMap := map[string]int{
+		"s1": 2,
+		"s3": 25,
+		"s2": 1,
+		"s0": 50,
+	}
+	keys := make([]string, 0)
+	for k := range unsortMap {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	for _, k := range keys {
+		fmt.Printf("k:%v v:%v\n", k, unsortMap[k])
 	}
 }
