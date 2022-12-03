@@ -3,6 +3,7 @@ package sort
 import (
 	"fmt"
 	"math/rand"
+	"sort"
 	"testing"
 )
 
@@ -70,5 +71,24 @@ func TestMergeSort(t *testing.T) {
 	MergeSort(s5)
 	if IsSorted(s5) == false {
 		t.Error("MergeSort error")
+	}
+}
+
+func buildRandSortedSlice(num int) []int {
+	s := make([]int, num)
+	for i := 0; i < num; i++ {
+		s[i] = rand.Int()
+	}
+	sort.Ints(s)
+	return s
+}
+
+func TestBinarySearch2(t *testing.T) {
+	for i := 0; i < 500; i++ {
+		s := buildRandSortedSlice(50000)
+		target := s[rand.Int()%50000]
+		if BinarySearch2(s, target) != sort.SearchInts(s, target) {
+			t.Error("BinarySearch error", BinarySearch2(s, target), sort.SearchInts(s, target))
+		}
 	}
 }
