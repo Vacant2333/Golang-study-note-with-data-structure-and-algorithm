@@ -6,7 +6,7 @@ import (
 )
 
 /*
-JSON传入Go解析后,int/float都会被认为是float64,如果要转int需要先转为float64后再转为int
+	JSON传入Go解析后,int/float都会被认为是float64,如果要转int需要先转为float64后再转为int
 */
 
 type DemoStruct struct {
