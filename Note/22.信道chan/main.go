@@ -50,6 +50,22 @@ func main() {
 	for v := range ch3 {
 		fmt.Println(v)
 	}
+
+	{
+		// 已关闭的ch可以读出值,直到读完已传入的内容后ok才会为false
+		ch := make(chan int, 5)
+		ch <- 18
+		close(ch)
+		x, ok := <-ch
+		if ok {
+			fmt.Println("received: ", x)
+		}
+
+		x, ok = <-ch
+		if !ok {
+			fmt.Println("channel closed, data invalid.")
+		}
+	}
 }
 
 // 往信道中返回斐波那契数列,n是到多少位
