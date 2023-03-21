@@ -45,7 +45,7 @@ func MakeClient(pname string, ch chan int) {
 func (c *Client) sendRandNums() {
 	max := 10000
 	wg := sync.WaitGroup{}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		wg.Add(1)
 		value := rand.Int() % max
 		go func() {
@@ -59,13 +59,17 @@ func (c *Client) sendRandNums() {
 
 func main() {
 	//用channel来传递"产品", 不再需要自己去加锁维护一个全局的阻塞队列
-	data := make(chan int)
-	go MakeClient("生产者1", data)
-	go MakeClient("生产者2", data)
-	go MakeServer("消费者1", data)
-	go MakeServer("消费者2", data)
+	ch := make(chan int)
+	go func() {
+		for i := 0; i < 5000; i++ {
+			go MakeClient(fmt.Sprintf("生产者[%v]", i), ch)
+		}
+		for i := 0; i < 10; i++ {
+			go MakeServer(fmt.Sprintf("消费者[%v]", i), ch)
+		}
+	}()
 
-	time.Sleep(10 * time.Second)
-	close(data)
+	time.Sleep(20 * time.Second)
+	close(ch)
 	time.Sleep(10 * time.Second)
 }

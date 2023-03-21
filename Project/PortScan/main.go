@@ -21,8 +21,8 @@ func main() {
 
 func checkPort(ip string, port int, wg *sync.WaitGroup) {
 	add := fmt.Sprintf("%v:%v", ip, port)
-	_, err1 := net.DialTimeout("tcp", add, time.Second*15)
-	if err1 == nil {
+	_, err := net.DialTimeout("tcp", add, time.Second*15)
+	if err == nil {
 		fmt.Printf("%v[TCP] Open!\n", add)
 	}
 	wg.Done()
