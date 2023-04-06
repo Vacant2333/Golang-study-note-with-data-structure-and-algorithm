@@ -5,15 +5,17 @@ import (
 )
 
 /*
-	Heap堆(最大堆):
-		堆序性:大根堆的左右节点都比根小,也就是头节点是最大值(还有小根堆)
-		第一个元素留空 不使用
-		节点下标为i时，左子节点下标为2i,右子节点下标为2i+1,父节点是i/2 (3/2 = 2/2 = 1,整除)
-		所有的叶子应处于第h/h-1层(h是树的高度),也就是说应是一棵完全二插树
-			入队			出队
-	普通数组	O(1)		O(n)
-	顺序数组	O(n)		O(1)
-	Heap堆	O(log n)	O(log n)
+Heap堆(最大堆):
+
+	堆序性:大根堆的左右节点都比根小,也就是头节点是最大值(还有小根堆)
+	第一个元素留空 不使用
+	节点下标为i时，左子节点下标为2i,右子节点下标为2i+1,父节点是i/2 (3/2 = 2/2 = 1,整除)
+	所有的叶子应处于第h/h-1层(h是树的高度),也就是说应是一棵完全二插树
+		入队			出队
+
+普通数组	O(1)		O(n)
+顺序数组	O(n)		O(1)
+Heap堆	O(log n)	O(log n)
 */
 type ElementType int
 type Heap []ElementType
@@ -150,7 +152,7 @@ func (heap *Heap) getMax(index int) float64 {
 			// 存在左右儿子节点
 			return math.Max(parentValue, math.Max(heap.getMax(left), heap.getMax(right)))
 		} else if heapLen > left {
-			// 存在左二子
+			// 存在左儿子节点
 			return math.Max(parentValue, heap.getMax(left))
 		} else {
 			// 没有儿子节点
