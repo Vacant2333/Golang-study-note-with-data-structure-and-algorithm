@@ -4,18 +4,24 @@ import (
 	"strconv"
 )
 
-func min(a, b int) int {
-	if a <= b {
-		return a
+func min(a ...int) int {
+	res := a[0]
+	for _, v := range a[1:] {
+		if v < res {
+			res = v
+		}
 	}
-	return b
+	return res
 }
 
-func max(a, b int) int {
-	if a >= b {
-		return a
+func max(a ...int) int {
+	res := a[0]
+	for _, v := range a[1:] {
+		if v > res {
+			res = v
+		}
 	}
-	return b
+	return res
 }
 
 // strings.Repeat()
