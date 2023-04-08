@@ -1,38 +1,21 @@
 package main
 
-import "fmt"
+import "sort"
 
 func main() {
-	var count int
-	fmt.Scan(&count)
-	boxs := map[byte][]int{}
-	for i := 0; i < count; i++ {
-		var char byte
-		fmt.Scanf("%c", &char)
-		if _, ok := boxs[char]; ok {
-			// 如果这个字符存过
-			boxs[char] = append(boxs[char], i)
-		} else {
-			boxs[char] = []int{i}
+}
+
+func eraseOverlapIntervals(intervals [][]int) int {
+	L := len(intervals)
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][1] < intervals[j][1]
+	})
+	ans, right := 1, intervals[0][1]
+	for i := 0; i < L; i++ {
+		if right <= intervals[i][0] {
+			ans++
+			right = intervals[i][0]
 		}
 	}
-	dp := map[byte][]int{}
-	for startChar := range boxs {
-
-	}
-
-}
-
-func max(a, b int) int {
-	if a >= b {
-		return a
-	}
-	return b
-}
-
-func min(a, b int) int {
-	if a <= b {
-		return a
-	}
-	return b
+	return L - ans
 }

@@ -17,6 +17,7 @@ Heap堆(最大堆):
 顺序数组	O(n)		O(1)
 Heap堆	O(log n)	O(log n)
 */
+
 type ElementType int
 type Heap []ElementType
 
