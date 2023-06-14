@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f2773017-f86e-4e58-b47d-b1d5e4802e01" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Algorithm/sort/search.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithm/sort/sort.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithm/sort/sort_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/heap/heap.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/heap/heap_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/queue/queue.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/queue/queue_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/segment_tree/segment_tree.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/segment_tree/segment_tree_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/set/set.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/set/set_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/set_map/set.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/set_map/set_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/stack/stack.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/stack/stack_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/tree/binart_search_tree_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/tree/binart_tree_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/tree/binary_search_tree.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/tree/binary_tree.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/tree/huffman_tree.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/tree/huffman_tree_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/01.变量/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/02.变量的数据类型/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/03.数据类型的转换/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/04.指针pointer/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/05.键盘输入/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/06.流程控制/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/07.函数/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/08.包/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/09.闭包/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/10.defer语句/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/11.字符串string/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/12.内置函数/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/13.错误处理/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/14.数组/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/15.切片slice/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/16.映射map/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/17.结构体struct/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/18.方法(面向对象)/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/19.接口interface/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/20.工厂模式factory/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/20.工厂模式factory/model/model.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/21.并发goroutine/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/22.信道chan/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/23.select语句/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/24.内存对齐/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/25.类型断言/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/26.Cond/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/27.JSON/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/28.trace/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Note/29.context/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/1.两数之和/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/146.LRU缓存/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/202.快乐数/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/203.移除链表元素/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/21.合并两个有序链表/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/242.有效的字母异位词/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/25.K个一组翻转链表/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/3. 无重复字符的最长子串/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/36.有效的数独/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/383.赎金信/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/387.字符串中的第一个唯一字符/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/42.接雨水/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/496. 下一个更大元素 I/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/5. 最长回文子串/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/503. 下一个更大元素 II/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/6078. 重排字符形成目标字符串/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/6079. 价格减免/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/6080. 使数组按非递减顺序排列/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/6083. 判断一个数的数字计数是否等于数位的值/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/6084. 最多单词数的发件人/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/73.矩阵置零/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/91.解码方法/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/剑指 Offer 09. 用两个栈实现队列/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/leetcode/剑指 Offer 30. 包含min函数的栈/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/02-线性结构4 Pop Sequence/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/03-树1 树的同构/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/03-树2 List Leaves/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/03-树3 Tree Traversals Again/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/04-树4 是否同一棵二叉搜索树/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/04-树6 Complete Binary Search Tree/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/05-树7 堆中的路径/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/05-树8 File Transfer/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/06-图1 列出连通集/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/06-图2 Saving James Bond - Easy Version/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/06-图3 六度空间/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/09-排序1 排序/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Practice/mooc/10-排序4 统计工龄/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/OnlineChat/Client/Client.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/OnlineChat/Server/Server.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/PortScan/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/ServerAndClient/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Template/template.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Template/template_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/ThreeGate/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/http_server_demo/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/test/main.go" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2QQK8Kba3cEm714yxtbnYJ7cXdi" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "configurable..is.expanded": "false",
+    "configurable.GoLibrariesConfigurable.is.expanded": "true",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/zhourentian/go/src/Golang-study-note-with-data-structure-and-algorithm",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "goland.project.structure"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
